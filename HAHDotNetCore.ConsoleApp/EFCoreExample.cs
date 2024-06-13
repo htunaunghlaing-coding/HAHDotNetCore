@@ -8,9 +8,10 @@ internal class EFCoreExample
 
     public void Run()
     {
-        Read();
-        RetrieveDataById(1);
-        RetrieveDataById(20);
+        //Read();
+        //RetrieveDataById(1);
+        //RetrieveDataById(20);
+        Create("test 1008", "test author", "test content");
     }
 
     private void Read()
@@ -42,6 +43,22 @@ internal class EFCoreExample
         Console.WriteLine($"Blog Author => {item.BlogAuthor}");
         Console.WriteLine($"Blog Content => {item.BlogContent}");
         Console.WriteLine("---------------------------------------");
+    }
+
+    private void Create(string title, string author, string content)
+    {
+        var item = new BlogDto()
+        {
+            BlogTitle = title,
+            BlogAuthor = author,
+            BlogContent = content
+        };
+
+        appDbContext.Blogs.Add(item);
+        int result = appDbContext.SaveChanges();
+
+        string message = result > 0 ? "Insert Data Successfully." : "Insert Data Fail.";
+        Console.WriteLine(message);
     }
 }
 
