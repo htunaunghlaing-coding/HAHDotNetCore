@@ -12,7 +12,9 @@ namespace HAHDotNetCore.ConsoleApp
             //Read();
             //RetrieveDataById(1);
             //RetrieveDataById(20);
-            Create("test 1007", "test author", "test content");
+            //Create("test 1007", "test author", "test content");
+            //Update(1007, "1007 test", "1007 author", "1007 content");
+            Delete(1007);
         }
 
         public void Read()
@@ -69,6 +71,45 @@ namespace HAHDotNetCore.ConsoleApp
             int result = db.Execute(query, item);
 
             String message = result > 0 ? "Insert Data Success." : "Insert Data Fail.";
+            Console.WriteLine(message);
+        }
+
+        public void Update(int id, string title, string author, string content)
+        {
+            var item = new BlogDto
+            {
+                BlogId = id,
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content
+            };
+
+            string query = @"UPDATE [dbo].[tbl_blog]
+                            SET [BlogTitle] = @BlogTitle,
+                            [BlogAuthor] = @BlogAuthor,
+                            [BlogContent] = @BlogContent
+                            Where BlogId = @BlogId";
+
+            using IDbConnection db = new SqlConnection(SqlConnectionString.stringBuilder.ConnectionString);
+            int result = db.Execute(query, item);
+
+            string message = result > 0 ? "Update Data Successfully." : "Update Data Fail.";
+            Console.WriteLine(message);
+        }
+
+        public void Delete(int id)
+        {
+            var item = new BlogDto()
+            {
+                BlogId = id
+            };
+
+            string query = @"Delete from [dbo].[tbl_blog] where BlogId = @BlogId";
+
+            using IDbConnection db = new SqlConnection(SqlConnectionString.stringBuilder.ConnectionString);
+            int result = db.Execute(query, item);
+
+            string message = result > 0 ? "Delete Data Successfully." : "Delete Data Fail.";
             Console.WriteLine(message);
         }
     }

@@ -135,6 +135,7 @@ namespace HAHDotNetCore.ConsoleApp
 
             string message = result > 0 ? "Delete Success." : "Delete Fail.";
         }
+
     }
 }
 
