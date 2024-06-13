@@ -63,6 +63,29 @@ namespace HAHDotNetCore.ConsoleApp
             string message = result > 0 ? "Insert Success." : "Insert Fail.";
             Console.WriteLine(message);
         }
+
+        public void update(int id, string title, string author, string content)
+        {
+            SqlConnection sqlConnection = new SqlConnection(_stringBuilder.ConnectionString);
+            sqlConnection.Open();
+
+            string query = @"UPDATE [dbo].[tbl_blog]
+                            SET [BlogTitle] = @BlogTitle,
+                            [BlogAuthor] = @BlogAuthor,
+                            [BlogContent] = @BlogContent
+                            Where BlogId = @BlogId";
+
+            SqlCommand sqlcommand = new SqlCommand(query, sqlConnection);
+            sqlcommand.Parameters.AddWithValue("@BlogId", id);
+            sqlcommand.Parameters.AddWithValue("@BlogTitle", title);
+            sqlcommand.Parameters.AddWithValue("@BlogAuthor", author);
+            sqlcommand.Parameters.AddWithValue("@BlogContent", content);
+            int result = sqlcommand.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            string message = result > 0 ? "Updte Success." : "Update Fail.";
+        }
     }
 }
 
