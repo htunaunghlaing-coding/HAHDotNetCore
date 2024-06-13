@@ -39,7 +39,7 @@ namespace HAHDotNetCore.ConsoleApp
 
             if (blogDto is null)
             {
-                Console.WriteLine("Dat not found in the table.");
+                Console.WriteLine("Data not found in the table.");
                 return;
             }
 
