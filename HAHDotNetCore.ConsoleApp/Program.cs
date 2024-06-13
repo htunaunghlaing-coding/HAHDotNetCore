@@ -5,8 +5,10 @@ using HAHDotNetCore.ConsoleApp;
 Console.WriteLine("Hello, World!");
 
 AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
-//adoDotNetExample.create("test 11", "test author", "test content");
-adoDotNetExample.update(1005, "title", "author", "content");
+//adoDotNetExample.Create("test 11", "test author", "test content");
+//adoDotNetExample.Update(1005, "title", "author", "content");
+//adoDotNetExample.Delete(1005);
+adoDotNetExample.RetrieveDataById(1004);
 
 Console.ReadLine();
 
