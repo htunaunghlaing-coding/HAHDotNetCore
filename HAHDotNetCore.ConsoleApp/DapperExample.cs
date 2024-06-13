@@ -9,9 +9,10 @@ namespace HAHDotNetCore.ConsoleApp
     {
         public void Run()
         {
-            Read();
-            RetrieveDataById(1);
-            RetrieveDataById(20);
+            //Read();
+            //RetrieveDataById(1);
+            //RetrieveDataById(20);
+            Create("test 1007", "test author", "test content");
         }
 
         public void Read()
@@ -45,6 +46,30 @@ namespace HAHDotNetCore.ConsoleApp
             Console.WriteLine($"Blog Author => {blogDto.BlogAuthor}");
             Console.WriteLine($"Blog Content => {blogDto.BlogContent}");
             Console.WriteLine("---------------------------------------");
+        }
+
+        public void Create(string title, string author, string content)
+        {
+            var item = new BlogDto
+            {
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content
+            };
+
+            string query = @"INSERT INTO [dbo].[tbl_Blog]
+                            ([BlogTitle],
+                            [BlogAuthor],
+                            [BlogContent])
+                            values
+                            (@BlogTitle,
+                            @BlogAuthor,
+                            @BlogContent)";
+            using IDbConnection db = new SqlConnection(SqlConnectionString.stringBuilder.ConnectionString);
+            int result = db.Execute(query, item);
+
+            String message = result > 0 ? "Insert Data Success." : "Insert Data Fail.";
+            Console.WriteLine(message);
         }
     }
 }
