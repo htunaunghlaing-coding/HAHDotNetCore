@@ -10,7 +10,8 @@ namespace HAHDotNetCore.ConsoleApp
             DataSource = "localhost",
             InitialCatalog = "HAHDotNetCore",
             UserID = "SA",
-            Password = "Password123"
+            Password = "Password123",
+            TrustServerCertificate = true
         };
     }
 }

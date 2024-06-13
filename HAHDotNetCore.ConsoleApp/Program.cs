@@ -10,8 +10,11 @@ Console.WriteLine("Hello, World!");
 //adoDotNetExample.Delete(1005);
 //adoDotNetExample.RetrieveDataById(1004);
 
-DapperExample dapper = new DapperExample();
-dapper.Run();
+//DapperExample dapper = new DapperExample();
+//dapper.Run();
+
+EFCoreExample eFCore = new EFCoreExample();
+eFCore.Run();
 
 Console.ReadLine();
 
