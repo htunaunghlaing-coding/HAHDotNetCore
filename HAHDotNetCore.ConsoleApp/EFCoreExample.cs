@@ -11,7 +11,9 @@ internal class EFCoreExample
         //Read();
         //RetrieveDataById(1);
         //RetrieveDataById(20);
-        Create("test 1008", "test author", "test content");
+        //Create("test 1008", "test author", "test content");
+        //Update(1008, "1008 test", "1008 author", "1008 content");
+        Delete(1008);
     }
 
     private void Read()
@@ -58,6 +60,41 @@ internal class EFCoreExample
         int result = appDbContext.SaveChanges();
 
         string message = result > 0 ? "Insert Data Successfully." : "Insert Data Fail.";
+        Console.WriteLine(message);
+    }
+
+    private void Update(int id, string title, string author, string content)
+    {
+        var item = appDbContext.Blogs.FirstOrDefault(x => x.BlogId == id);
+        if (item is null)
+        {
+            Console.WriteLine("Data Not Found in the table.");
+            return;
+        }
+
+        item.BlogTitle = title;
+        item.BlogAuthor = author;
+        item.BlogContent = content;
+        int result = appDbContext.SaveChanges();
+
+        string message = result > 0 ? "Update Data Successfully." : "Update Data Fail.";
+        Console.WriteLine(message);
+    }
+
+    private void Delete(int id)
+    {
+        var item = appDbContext.Blogs.FirstOrDefault(x => x.BlogId == id);
+
+        if (item is null)
+        {
+            Console.WriteLine("Data Not Found in the table.");
+            return;
+        }
+
+        appDbContext.Blogs.Remove(item);
+        int result = appDbContext.SaveChanges();
+
+        string message = result > 0 ? "Delete Data Successfully." : "Delete Data Fail.";
         Console.WriteLine(message);
     }
 }
