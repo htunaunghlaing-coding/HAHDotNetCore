@@ -13,4 +13,18 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.20" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="AdoDotNetExamples\" />
+    <None Remove="DapperExamples\" />
+    <None Remove="Dtos\" />
+    <None Remove="EFCoreExamples\" />
+    <None Remove="Settings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AdoDotNetExamples\" />
+    <Folder Include="DapperExamples\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="EFCoreExamples\" />
+    <Folder Include="Settings\" />
+  </ItemGroup>
 </Project>
