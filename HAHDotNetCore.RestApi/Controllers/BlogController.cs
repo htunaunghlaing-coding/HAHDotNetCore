@@ -11,10 +11,29 @@ namespace HAHDotNetCore.RestApi.Controllers;
 [Route("api/[controller]")]
 public class BlogController : Controller
 {
+    private readonly AppDbContext _db;
+
+    public BlogController()
+    {
+        _db = new AppDbContext();
+    }
+
     [HttpGet]
     public IActionResult Read()
     {
-        return Ok("Read");
+        var list = _db.Blogs.ToList();
+        return Ok(list);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult Edit(int id)
+    {
+        var item = _db.Blogs.FirstOrDefault(x => x.BlogId == id);
+        if(item is null)
+        {
+            return NotFound("Data not found in the table.");
+        }
+        return Ok(item);
     }
 
     [HttpPost]
