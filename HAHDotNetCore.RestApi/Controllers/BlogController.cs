@@ -29,7 +29,7 @@ public class BlogController : Controller
     public IActionResult Edit(int id)
     {
         var item = _db.Blogs.FirstOrDefault(x => x.BlogId == id);
-        if(item is null)
+        if (item is null)
         {
             return NotFound("Data not found in the table.");
         }
@@ -37,27 +37,73 @@ public class BlogController : Controller
     }
 
     [HttpPost]
-    public IActionResult Create()
+    public IActionResult Create(BlogModel blog)
     {
-        return Ok("Create");
+        _db.Blogs.Add(blog);
+        var result = _db.SaveChanges();
+
+        string message = result > 0 ? "Saving Data Success." : "Saving Data Fail.";
+        return Ok(message);
     }
 
-    [HttpPut]
-    public IActionResult Update()
+    [HttpPut("{id}")]
+    public IActionResult Update(int id, BlogModel blog)
     {
-        return Ok("Update");
+        var item = _db.Blogs.FirstOrDefault(x => x.BlogId == id);
+        if (item is null)
+        {
+            return NotFound("Data not found in the table.");
+        }
+
+        item.BlogTitle = blog.BlogTitle;
+        item.BlogAuthor = blog.BlogAuthor;
+        item.BlogContent = blog.BlogAuthor;
+        var result = _db.SaveChanges();
+
+        string message = result > 0 ? "Update data successfully." : "Update data fail.";
+        return Ok(message);
     }
 
-    [HttpPatch]
-    public IActionResult Patch()
+    [HttpPatch("{id}")]
+    public IActionResult Patch(int id, BlogModel blog)
     {
-        return Ok("Patch");
+        var item = _db.Blogs.FirstOrDefault(x => x.BlogId == id);
+        if (item is null)
+        {
+            return NotFound("Data not found in the table.");
+        }
+
+        if (!string.IsNullOrEmpty(blog.BlogTitle))
+        {
+            item.BlogTitle = blog.BlogTitle;
+        }
+        if (!string.IsNullOrEmpty(blog.BlogAuthor))
+        {
+            item.BlogAuthor = blog.BlogAuthor;
+        }
+        if (!string.IsNullOrEmpty(blog.BlogContent))
+        {
+            item.BlogContent = blog.BlogContent;
+        }
+        int result = _db.SaveChanges();
+
+        string mesage = result > 0 ? "Updaing Data Successfully." : "Updating Data Fail.";
+        return Ok(mesage);
     }
 
-    [HttpDelete]
-    public IActionResult Delete()
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
     {
-        return Ok("Delete");
+        var item = _db.Blogs.FirstOrDefault(x => x.BlogId == id);
+        if (item is null)
+        {
+            return NotFound("Data Not found in the table.");
+        }
+        _db.Blogs.Remove(item);
+        int result = _db.SaveChanges();
+
+        string message = result > 0 ? "Delete Data Successfully." : "Delete Data Fail.";
+        return Ok(message);
     }
 }
 
