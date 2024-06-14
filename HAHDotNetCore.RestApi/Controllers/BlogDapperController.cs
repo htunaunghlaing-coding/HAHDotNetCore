@@ -24,5 +24,18 @@ public class BlogDapperController : Controller
 
         return Ok(lists);
     }
+
+    [HttpGet("{id}")]
+    public IActionResult getBlogById(int id)
+    {
+        string query = "select * from tbl_blog where blogId = @BlogId";
+        using IDbConnection db = new SqlConnection(SqlConnectionString.StringBuilder.ConnectionString);
+        var item = db.Query<BlogModel>(query, new BlogModel { BlogId = id }).FirstOrDefault();
+        if (item is null)
+        {
+            return NotFound("Data not found in the table.");
+        }
+        return Ok(item);
+    }
 }
 
