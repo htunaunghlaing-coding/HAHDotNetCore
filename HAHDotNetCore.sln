@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Document", "Document", "{62
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.RestApi", "HAHDotNetCore.RestApi\HAHDotNetCore.RestApi.csproj", "{AD303E01-9D72-4465-9063-76BF59BE28E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.Shared", "HAHDotNetCore.Shared\HAHDotNetCore.Shared.csproj", "{38003924-8B7B-443F-9E40-245684E7B8A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{AD303E01-9D72-4465-9063-76BF59BE28E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD303E01-9D72-4465-9063-76BF59BE28E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD303E01-9D72-4465-9063-76BF59BE28E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38003924-8B7B-443F-9E40-245684E7B8A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38003924-8B7B-443F-9E40-245684E7B8A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38003924-8B7B-443F-9E40-245684E7B8A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38003924-8B7B-443F-9E40-245684E7B8A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
