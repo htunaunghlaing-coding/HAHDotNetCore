@@ -110,5 +110,30 @@ public class BlogAdoDotNetController : Controller
         return Ok(message);
     }
 
+    [HttpPut("{id}")]
+    public IActionResult UpdateBlog(int id, BlogModel blog)
+    {
+        string query = @"UPDATE [dbo].[tbl_blog]
+                            SET [BlogTitle] = @BlogTitle,
+                            [BlogAuthor] = @BlogAuthor,
+                            [BlogContent] = @BlogContent
+                            Where BlogId = @BlogId";
+
+        SqlConnection connection = new SqlConnection(SqlConnectionString.StringBuilder.ConnectionString);
+        connection.Open();
+
+        SqlCommand cmd = new SqlCommand(query, connection);
+        cmd.Parameters.AddWithValue("@BlogId", id);
+        cmd.Parameters.AddWithValue("@BlogTitle", blog.BlogTitle);
+        cmd.Parameters.AddWithValue("@BlogAuthor", blog.BlogAuthor);
+        cmd.Parameters.AddWithValue("@BlogContent", blog.BlogContent);
+        int result = cmd.ExecuteNonQuery();
+
+        connection.Close();
+
+        string message = result > 0 ? "Update Data Successfully." : "Update Data Fail.";
+        return Ok(message);
+    }
+
 }
 
