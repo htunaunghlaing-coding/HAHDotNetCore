@@ -20,6 +20,13 @@ public class DapperService
         return list;
     }
 
+    public T QueryFirstOrDefault<T>(string query, Object? param = null)
+    {
+        using IDbConnection db = new SqlConnection(_SqlConnectionString);
+        var item= db.Query<T>(query, param).FirstOrDefault();
+        return item!;
+    }
+
     public int Execute(string query, Object? param = null)
     {
         using IDbConnection db = new SqlConnection(_SqlConnectionString);
@@ -28,3 +35,4 @@ public class DapperService
     }
 }
 
+ 
