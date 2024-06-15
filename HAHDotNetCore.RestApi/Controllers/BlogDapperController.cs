@@ -85,7 +85,9 @@ public class BlogDapperController : Controller
         {
             return NotFound("Data Not Found In the table.");
         }
+
         string conditions = string.Empty;
+
         if (!string.IsNullOrEmpty(blog.BlogTitle))
         {
             conditions += "[BlogTitle] = @BlogTitle, ";
