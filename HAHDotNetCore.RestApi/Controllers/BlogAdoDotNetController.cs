@@ -83,5 +83,32 @@ public class BlogAdoDotNetController : Controller
         return Ok(item);
     }
 
+    [HttpPost]
+    public IActionResult CreateBlog(BlogModel blog)
+    {
+        string query = @"INSERT INTO [dbo].[tbl_Blog]
+                            ([BlogTitle],
+                            [BlogAuthor],
+                            [BlogContent])
+                            values
+                            (@BlogTitle,
+                            @BlogAuthor,
+                            @BlogContent)";
+
+        SqlConnection connection = new SqlConnection(SqlConnectionString.StringBuilder.ConnectionString);
+        connection.Open();
+
+        SqlCommand cmd = new SqlCommand(query, connection);
+        cmd.Parameters.AddWithValue("@BlogTitle", blog.BlogTitle);
+        cmd.Parameters.AddWithValue("@BlogAuthor", blog.BlogAuthor);
+        cmd.Parameters.AddWithValue("@BlogContent", blog.BlogContent);
+        int result = cmd.ExecuteNonQuery();
+
+        connection.Close();
+
+        string message = result > 0 ? "Insert data successfully." : "Insert data fail.";
+        return Ok(message);
+    }
+
 }
 
