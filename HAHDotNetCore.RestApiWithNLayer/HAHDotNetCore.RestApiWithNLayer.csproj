@@ -14,22 +14,31 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Controllers\" />
     <None Remove="Settings\" />
-    <None Remove="Feature\" />
-    <None Remove="Feature\Blog\" />
     <None Remove="Db\" />
     <None Remove="Model\" />
+    <None Remove="Features\" />
+    <None Remove="Features\LatHtaukBayDin\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Settings\" />
-    <Folder Include="Feature\" />
-    <Folder Include="Feature\Blog\" />
     <Folder Include="Db\" />
     <Folder Include="Model\" />
+    <Folder Include="Features\" />
+    <Folder Include="Features\LatHtaukBayDin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="data.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
