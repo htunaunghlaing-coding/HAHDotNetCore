@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.RestApiWithNL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.ConsoleAppHttpClient", "HAHDotNetCore.ConsoleAppHttpClient\HAHDotNetCore.ConsoleAppHttpClient.csproj", "{17A00461-4F4A-425B-BD23-D897941407A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.ConsoleAppHttpClientExamples", "HAHDotNetCore.ConsoleAppHttpClientExamples\HAHDotNetCore.ConsoleAppHttpClientExamples.csproj", "{CF62589B-26D2-44FC-AE88-B49A631369C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{17A00461-4F4A-425B-BD23-D897941407A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17A00461-4F4A-425B-BD23-D897941407A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17A00461-4F4A-425B-BD23-D897941407A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF62589B-26D2-44FC-AE88-B49A631369C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF62589B-26D2-44FC-AE88-B49A631369C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF62589B-26D2-44FC-AE88-B49A631369C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF62589B-26D2-44FC-AE88-B49A631369C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
