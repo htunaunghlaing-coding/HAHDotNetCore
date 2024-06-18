@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HAHDotNetCore.ConsoleAppHttpClientExamples;
 
@@ -29,8 +31,11 @@ internal class HttpClientExamples
 
     public async Task RunAsync()
     {
-        await EditAsync(1);
-        await EditAsync(100);
+        //await ReadAsync();
+        //await EditAsync(1);
+        //await EditAsync(100);
+        //await CreateAsync("title new", "test author", "test content");
+        await UpdateAsync(1017, "17 test", "test author", "test content");
     }
 
     private async Task ReadAsync()
@@ -66,6 +71,61 @@ internal class HttpClientExamples
         else
         {
             string message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+        }
+    }
+
+    private async Task CreateAsync(string title, string author, string content)
+    {
+        BlogModel blogModel = new BlogModel()
+        {
+            BlogTitle = title,
+            BlogAuthor = author,
+            BlogContent = content
+        };
+
+        string blogJson = JsonConvert.SerializeObject(blogModel);
+
+        HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
+        var response = await _client.PostAsync(_blogEndpoint, httpContent);
+        if (response.IsSuccessStatusCode)
+        {
+            string message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+        }
+    }
+
+    private async Task UpdateAsync(int id, string title, string author, string content)
+    {
+        BlogModel blogModel = new BlogModel()
+        {
+            BlogTitle = title,
+            BlogAuthor = author,
+            BlogContent = content
+        };
+
+        string blogJson = JsonConvert.SerializeObject(blogModel);
+
+        HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
+        var response = await _client.PutAsync($"{_blogEndpoint}/{id}", httpContent);
+        if (response.IsSuccessStatusCode)
+        {
+            var message = response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+        }
+    }
+
+    private async Task DeleteAsync(int id)
+    {
+        var response = await _client.DeleteAsync($"{_blogEndpoint}/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            var message = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(message);
+        }
+        else
+        {
+            var message = await response.Content.ReadAsStringAsync();
             Console.WriteLine(message);
         }
     }
