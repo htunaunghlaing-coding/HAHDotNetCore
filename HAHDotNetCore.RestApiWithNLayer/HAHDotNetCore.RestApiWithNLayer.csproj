@@ -24,6 +24,7 @@
     <None Remove="Model\" />
     <None Remove="Features\" />
     <None Remove="Features\LatHtaukBayDin\" />
+    <None Remove="Features\MyanmarProverbs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
@@ -32,6 +33,7 @@
     <Folder Include="Model\" />
     <Folder Include="Features\" />
     <Folder Include="Features\LatHtaukBayDin\" />
+    <Folder Include="Features\MyanmarProverbs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="data.json" />
