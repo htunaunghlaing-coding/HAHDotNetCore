@@ -13,15 +13,19 @@ public class MyanmarProverbsController : Controller
 {
     private async Task<Tbl_MMproverbs> GetDataFromApi()
     {
-        HttpClient client = new HttpClient();
-        var response = await client.GetAsync("https://raw.githubusercontent.com/sannlynnhtun-coding/Myanmar-Proverbs/main/MyanmarProverbs.json");
-        if (response.IsSuccessStatusCode)
-        {
-            string jsonStr = await response.Content.ReadAsStringAsync();
-            var model = JsonConvert.DeserializeObject<Tbl_MMproverbs>(jsonStr);
-            return model;
-        }
-        return null;
+        //HttpClient client = new HttpClient();
+        //var response = await client.GetAsync("https://raw.githubusercontent.com/sannlynnhtun-coding/Myanmar-Proverbs/main/MyanmarProverbs.json");
+        //if (response.IsSuccessStatusCode)
+        //{
+        //    string jsonStr = await response.Content.ReadAsStringAsync();
+        //    var model = JsonConvert.DeserializeObject<Tbl_MMproverbs>(jsonStr);
+        //    return model;
+        //}
+        //return null;
+
+        var jsonStr = await System.IO.File.ReadAllTextAsync("MyanmarProverbs.json");
+        var model = JsonConvert.DeserializeObject<Tbl_MMproverbs>(jsonStr);
+        return model;
     }
 
     [HttpGet]
@@ -48,6 +52,14 @@ public class MyanmarProverbsController : Controller
         var titleId = item.TitleId;
         var lst = model.Tbl_MMProverbs.Where(x => x.TitleId == titleId);
         return Ok(lst);
+    }
+
+    [HttpGet("{titleId}/{proverbsId}")]
+    public async Task<IActionResult> GetAsync(int titleId, int proverbsId)
+    {
+        var model = await GetDataFromApi();
+        var item = model.Tbl_MMProverbs.FirstOrDefault(x => x.TitleId == titleId && x.ProverbId == proverbsId);
+        return Ok(item);
     }
 }
 
