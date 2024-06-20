@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.ConsoleAppHtt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.ConsoleAppHttpClientExamples", "HAHDotNetCore.ConsoleAppHttpClientExamples\HAHDotNetCore.ConsoleAppHttpClientExamples.csproj", "{CF62589B-26D2-44FC-AE88-B49A631369C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.ConsoleAppRestClientExamples", "HAHDotNetCore.ConsoleAppRestClientExamples\HAHDotNetCore.ConsoleAppRestClientExamples.csproj", "{62FBA6B2-5BF8-46E7-ABAD-7F372FAA4942}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{CF62589B-26D2-44FC-AE88-B49A631369C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF62589B-26D2-44FC-AE88-B49A631369C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF62589B-26D2-44FC-AE88-B49A631369C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62FBA6B2-5BF8-46E7-ABAD-7F372FAA4942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62FBA6B2-5BF8-46E7-ABAD-7F372FAA4942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62FBA6B2-5BF8-46E7-ABAD-7F372FAA4942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62FBA6B2-5BF8-46E7-ABAD-7F372FAA4942}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
