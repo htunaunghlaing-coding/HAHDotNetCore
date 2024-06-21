@@ -73,4 +73,18 @@ public class PizzaController : Controller
 
         return Ok();
     }
+
+    [HttpGet("Order/{invoiceNo}")]
+    public async Task<IActionResult> GetOrder(string invoiceNo)
+    {
+        var item = await _db.pizzaOrderModels.FirstOrDefaultAsync(x => x.PizzaOrderInvoiceNo == invoiceNo);
+        var lst = await _db.pizzaOrderDetails.Where(x => x.PizzaOrderInvoiceNo == invoiceNo).ToListAsync();
+
+        var Order = new
+        {
+            Order = item,
+            PizzaOrderDetailModel = lst
+        };
+        return Ok(Order);
+    }
 }
