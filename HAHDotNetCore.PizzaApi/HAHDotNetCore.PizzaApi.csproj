@@ -22,6 +22,7 @@
     <None Remove="Models\" />
     <None Remove="Db\" />
     <None Remove="Settings\" />
+    <None Remove="Queries\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
@@ -29,5 +30,11 @@
     <Folder Include="Models\" />
     <Folder Include="Db\" />
     <Folder Include="Settings\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HAHDotNetCore.Shared\HAHDotNetCore.Shared.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>
