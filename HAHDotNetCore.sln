@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.ConsoleAppRes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.PizzaApi", "HAHDotNetCore.PizzaApi\HAHDotNetCore.PizzaApi.csproj", "{2293C8E2-F2E1-4363-97BD-98592D0B812B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.ConsoleAppRefitExamples", "HAHDotNetCore.ConsoleAppRefitExamples\HAHDotNetCore.ConsoleAppRefitExamples.csproj", "{75EB8912-8E38-4AA1-B761-7D3FDEBCC5C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{2293C8E2-F2E1-4363-97BD-98592D0B812B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2293C8E2-F2E1-4363-97BD-98592D0B812B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2293C8E2-F2E1-4363-97BD-98592D0B812B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75EB8912-8E38-4AA1-B761-7D3FDEBCC5C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75EB8912-8E38-4AA1-B761-7D3FDEBCC5C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75EB8912-8E38-4AA1-B761-7D3FDEBCC5C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75EB8912-8E38-4AA1-B761-7D3FDEBCC5C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

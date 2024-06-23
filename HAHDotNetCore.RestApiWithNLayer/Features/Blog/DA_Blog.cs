@@ -38,7 +38,6 @@ public class DA_Blog
         item.BlogTitle = requestModel.BlogTitle;
         item.BlogAuthor = requestModel.BlogAuthor;
         item.BlogContent = requestModel.BlogContent;
-
         var result = _db.SaveChanges();
         return result;
     }
