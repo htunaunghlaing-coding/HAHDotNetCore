@@ -1,12 +1,13 @@
 const tblBlog = "blogs";
 
-// createBlog();
-updateBlog(
-  "68a8d62f-87de-4c0a-a63e-f8300caa5299",
-  "test demo",
-  "test demo",
-  "test demo"
-);
+createBlog();
+// updateBlog(
+//   "68a8d62f-87de-4c0a-a63e-f8300caa5299",
+//   "test demo",
+//   "test demo",
+//   "test demo"
+// );
+deleteBlog("5449f29a-e34c-427c-9a2f-8b88e40ddb6c");
 
 function readBlog() {
   localStorage.getItem();
@@ -61,6 +62,26 @@ function updateBlog(id, title, author, content) {
   const index = lst.findIndex((x) => (x.id = id));
   lst[index] = item;
 
+  const jsonBlog = JSON.stringify(lst);
+  localStorage.setItem(tblBlog, jsonBlog);
+}
+
+function deleteBlog(id) {
+  const blogs = localStorage.getItem(tblBlog);
+  console.log(blogs);
+
+  let lst = [];
+  if (blogs !== null) {
+    lst = JSON.parse(blogs);
+  }
+
+  const items = lst.filter((x) => x.id == id);
+  if (items.length == 0) {
+    console.log("Data Not found.");
+    return;
+  }
+
+  lst = lst.filter((x) => (x.id = !id));
   const jsonBlog = JSON.stringify(lst);
   localStorage.setItem(tblBlog, jsonBlog);
 }
