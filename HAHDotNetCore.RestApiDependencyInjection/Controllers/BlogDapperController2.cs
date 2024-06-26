@@ -13,13 +13,19 @@ namespace HAHDotNetCore.RestApiDependencyInjection.Controllers;
 [Route("api/[controller]")]
 public class BlogDapperController2 : Controller
 {
-    private readonly DapperService _dapperServic = new DapperService(SqlConnectionString.StringBuilder.ConnectionString);
+    //private readonly DapperService _dapperService = new DapperService(SqlConnectionString.StringBuilder.ConnectionString);
+    private readonly DapperService _dapperService;
+
+    public BlogDapperController2(DapperService dapperService)
+    {
+        _dapperService = dapperService;
+    }
 
     [HttpGet]
     public IActionResult GetBlogs()
     {
         string query = "select * from tbl_blog";
-        var list = _dapperServic.Query<BlogModel>(query);
+        var list = _dapperService.Query<BlogModel>(query);
 
         return Ok(list);
     }
@@ -47,7 +53,7 @@ public class BlogDapperController2 : Controller
                             @BlogAuthor,
                             @BlogContent)";
 
-        int result = _dapperServic.Execute(query, blog);
+        int result = _dapperService.Execute(query, blog);
 
         string message = result > 0 ? "Insert Data Successfully." : "Insert Data Fail.";
         return Ok(message);
@@ -69,7 +75,7 @@ public class BlogDapperController2 : Controller
                             [BlogContent] = @BlogContent
                             Where BlogId = @BlogId";
 
-        int result = _dapperServic.Execute(query, blog);
+        int result = _dapperService.Execute(query, blog);
 
         string message = result > 0 ? "Update Data Successfully." : "Update Data Fail.";
         return Ok(message);
@@ -110,7 +116,7 @@ public class BlogDapperController2 : Controller
                             SET {conditions}
                             Where BlogId = @BlogId";
 
-        int result = _dapperServic.Execute(query, blog);
+        int result = _dapperService.Execute(query, blog);
 
         string message = result > 0 ? "Update Data Successfully." : "Update Data Fail.";
         return Ok(message);
@@ -127,7 +133,7 @@ public class BlogDapperController2 : Controller
 
         string query = @"Delete from [dbo].[tbl_blog] where blogId = @BlogId";
 
-        int result = _dapperServic.Execute(query, new BlogModel { BlogId = id });
+        int result = _dapperService.Execute(query, new BlogModel { BlogId = id });
 
         string message = result > 0 ? "Delete Data Successfully." : "Delete Data Fail.";
         return Ok(message);
@@ -136,7 +142,7 @@ public class BlogDapperController2 : Controller
     private BlogModel? FindById(int id)
     {
         string query = "select * from tbl_blog where blogId = @BlogId";
-        var item = _dapperServic.QueryFirstOrDefault<BlogModel>(query, new BlogModel { BlogId = id });
+        var item = _dapperService.QueryFirstOrDefault<BlogModel>(query, new BlogModel { BlogId = id });
         return item;
     }
 

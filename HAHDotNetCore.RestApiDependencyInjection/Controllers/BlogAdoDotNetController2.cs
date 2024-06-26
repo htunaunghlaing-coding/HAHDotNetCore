@@ -13,7 +13,13 @@ namespace HAHDotNetCore.RestApiDependencyInjection.Controllers;
 [Route("api/[controller]")]
 public class BlogAdoDotNetController2 : Controller
 {
-    private readonly AdoDotNetService _adoDotNetService = new AdoDotNetService(SqlConnectionString.StringBuilder.ConnectionString);
+    //private readonly AdoDotNetService _adoDotNetService = new AdoDotNetService(SqlConnectionString.StringBuilder.ConnectionString);
+    private readonly AdoDotNetService _adoDotNetService;
+
+    public BlogAdoDotNetController2(AdoDotNetService adoDotNetService)
+    {
+        _adoDotNetService = adoDotNetService;
+    }
 
     [HttpGet]
     public IActionResult GetBlogs()

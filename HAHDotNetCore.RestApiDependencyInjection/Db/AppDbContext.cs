@@ -3,12 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HAHDotNetCore.RestApiDependencyInjection;
 
-internal class AppDbContext : DbContext
+public class AppDbContext : DbContext
 {
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public AppDbContext(DbContextOptions options) : base(options)
     {
-        optionsBuilder.UseSqlServer(SqlConnectionString.StringBuilder.ConnectionString);
     }
+
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    optionsBuilder.UseSqlServer(SqlConnectionString.StringBuilder.ConnectionString);
+    //}
 
     public DbSet<BlogModel> Blogs { get; set; }
 }
