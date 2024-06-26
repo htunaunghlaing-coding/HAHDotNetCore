@@ -1,48 +1,42 @@
 const tblBlog = "blogs";
 
-createBlog();
+getBlogsTable();
+
+//createBlog();
 // updateBlog(
 //   "68a8d62f-87de-4c0a-a63e-f8300caa5299",
 //   "test demo",
 //   "test demo",
 //   "test demo"
 // );
-deleteBlog("5449f29a-e34c-427c-9a2f-8b88e40ddb6c");
+//deleteBlog("5449f29a-e34c-427c-9a2f-8b88e40ddb6c");
 
 function readBlog() {
-  localStorage.getItem();
+  let lst = getBlogs();
+  console.log(lst);
 }
 
-function createBlog() {
-  const blogs = localStorage.getItem(tblBlog);
-  console.log(blogs);
-
-  let lst = [];
-  if (blogs !== null) {
-    lst = JSON.parse(blogs);
-  }
+function createBlog(title, author, content) {
+  let lst = getBlogs();
 
   const requestModel = {
     id: uuidv4(),
-    title: "test title",
-    author: "test author",
-    content: "test content",
+    title: title,
+    author: author,
+    content: content,
   };
 
   lst.push(requestModel);
 
   const jsonBlog = JSON.stringify(lst);
   localStorage.setItem(tblBlog, jsonBlog);
+
+  successMessage("Saving Success.");
+  clearControl();
 }
 
 function updateBlog(id, title, author, content) {
-  const blogs = localStorage.getItem(tblBlog);
-  console.log(blogs);
-
-  let lst = [];
-  if (blogs !== null) {
-    lst = JSON.parse(blogs);
-  }
+  let lst = getBlogs();
 
   const items = lst.filter((x) => (x.id = id));
   console.log(items);
@@ -67,13 +61,7 @@ function updateBlog(id, title, author, content) {
 }
 
 function deleteBlog(id) {
-  const blogs = localStorage.getItem(tblBlog);
-  console.log(blogs);
-
-  let lst = [];
-  if (blogs !== null) {
-    lst = JSON.parse(blogs);
-  }
+  let lst = getBlogs();
 
   const items = lst.filter((x) => x.id == id);
   if (items.length == 0) {
@@ -93,4 +81,55 @@ function uuidv4() {
       (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
     ).toString(16)
   );
+}
+
+function getBlogs() {
+  const blogs = localStorage.getItem(tblBlog);
+  console.log(blogs);
+
+  let lst = [];
+  if (blogs !== null) {
+    lst = JSON.parse(blogs);
+  }
+  return lst;
+}
+
+$("#btnSave").click(function () {
+  const title = $("#txtTitle").val();
+  const author = $("#txtAuthor").val();
+  const content = $("#txtContent").val();
+  createBlog(title, author, content);
+});
+
+function successMessage(message) {
+  alert(message);
+}
+
+function errorMessage(message) {
+  alert(message);
+}
+
+function clearControl() {
+  $("#txtTitle").val(" ");
+  $("#txtAuthor").val(" ");
+  $("#txtContent").val(" ");
+  $("#txtTitle").focus();
+}
+
+function getBlogsTable() {
+  const lst = getBlogs();
+  let count = 0;
+  let htmlRows = '';
+  lst.forEach((item) => {
+      const htmlRow = `
+      <tr>
+         <td>${++count}</td>
+         <td>${item.title}</td>
+         <td>${item.author}</td>
+         <td>${item.content}</td>
+      </tr>
+      `;
+    htmlRows += htmlRow;
+  });
+  $('#tbody').html(htmlRows);
 }
