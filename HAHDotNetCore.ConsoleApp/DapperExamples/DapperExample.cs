@@ -3,63 +3,70 @@ using System.Data;
 using System.Data.SqlClient;
 using Dapper;
 
-namespace HAHDotNetCore.ConsoleApp
+namespace HAHDotNetCore.ConsoleApp;
+
+public class DapperExample
 {
-    internal class DapperExample
+    private readonly SqlConnectionStringBuilder _stringBuilder;
+
+    public DapperExample(SqlConnectionStringBuilder stringBuilder)
     {
-        public void Run()
+        _stringBuilder = stringBuilder;
+    }
+
+    public void Run()
+    {
+        //Read();
+        //RetrieveDataById(1);
+        //RetrieveDataById(20);
+        //Create("test 1007", "test author", "test content");
+        //Update(1007, "1007 test", "1007 author", "1007 content");
+        Delete(1007);
+    }
+
+    public void Read()
+    {
+        using IDbConnection db = new SqlConnection(_stringBuilder.ConnectionString);
+        List<BlogDto> blogDtos = db.Query<BlogDto>("select * from tbl_blog").ToList();
+
+        foreach (BlogDto item in blogDtos)
         {
-            //Read();
-            //RetrieveDataById(1);
-            //RetrieveDataById(20);
-            //Create("test 1007", "test author", "test content");
-            //Update(1007, "1007 test", "1007 author", "1007 content");
-            Delete(1007);
-        }
-
-        public void Read()
-        {
-            using IDbConnection db = new SqlConnection(SqlConnectionString.stringBuilder.ConnectionString);
-            List<BlogDto> blogDtos = db.Query<BlogDto>("select * from tbl_blog").ToList();
-
-            foreach (BlogDto item in blogDtos)
-            {
-                Console.WriteLine($"Blog Id => {item.BlogId}");
-                Console.WriteLine($"Blog Title => {item.BlogTitle}");
-                Console.WriteLine($"Blog Author => {item.BlogAuthor}");
-                Console.WriteLine($"Blog Content => {item.BlogContent}");
-                Console.WriteLine("---------------------------------------");
-            }
-        }
-
-        public void RetrieveDataById(int id)
-        {
-            using IDbConnection db = new SqlConnection(SqlConnectionString.stringBuilder.ConnectionString);
-            var blogDto = db.Query<BlogDto>("select * from tbl_blog where blogId = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
-
-            if (blogDto is null)
-            {
-                Console.WriteLine("Data not found in the table.");
-                return;
-            }
-
-            Console.WriteLine($"Blog Id => {blogDto.BlogId}");
-            Console.WriteLine($"Blog Title => {blogDto.BlogTitle}");
-            Console.WriteLine($"Blog Author => {blogDto.BlogAuthor}");
-            Console.WriteLine($"Blog Content => {blogDto.BlogContent}");
+            Console.WriteLine($"Blog Id => {item.BlogId}");
+            Console.WriteLine($"Blog Title => {item.BlogTitle}");
+            Console.WriteLine($"Blog Author => {item.BlogAuthor}");
+            Console.WriteLine($"Blog Content => {item.BlogContent}");
             Console.WriteLine("---------------------------------------");
         }
+    }
 
-        public void Create(string title, string author, string content)
+    public void RetrieveDataById(int id)
+    {
+        using IDbConnection db = new SqlConnection(_stringBuilder.ConnectionString);
+        var blogDto = db.Query<BlogDto>("select * from tbl_blog where blogId = @BlogId", new BlogDto { BlogId = id }).FirstOrDefault();
+
+        if (blogDto is null)
         {
-            var item = new BlogDto
-            {
-                BlogTitle = title,
-                BlogAuthor = author,
-                BlogContent = content
-            };
+            Console.WriteLine("Data not found in the table.");
+            return;
+        }
 
-            string query = @"INSERT INTO [dbo].[tbl_Blog]
+        Console.WriteLine($"Blog Id => {blogDto.BlogId}");
+        Console.WriteLine($"Blog Title => {blogDto.BlogTitle}");
+        Console.WriteLine($"Blog Author => {blogDto.BlogAuthor}");
+        Console.WriteLine($"Blog Content => {blogDto.BlogContent}");
+        Console.WriteLine("---------------------------------------");
+    }
+
+    public void Create(string title, string author, string content)
+    {
+        var item = new BlogDto
+        {
+            BlogTitle = title,
+            BlogAuthor = author,
+            BlogContent = content
+        };
+
+        string query = @"INSERT INTO [dbo].[tbl_Blog]
                             ([BlogTitle],
                             [BlogAuthor],
                             [BlogContent])
@@ -67,51 +74,50 @@ namespace HAHDotNetCore.ConsoleApp
                             (@BlogTitle,
                             @BlogAuthor,
                             @BlogContent)";
-            using IDbConnection db = new SqlConnection(SqlConnectionString.stringBuilder.ConnectionString);
-            int result = db.Execute(query, item);
+        using IDbConnection db = new SqlConnection(_stringBuilder.ConnectionString);
+        int result = db.Execute(query, item);
 
-            String message = result > 0 ? "Insert Data Success." : "Insert Data Fail.";
-            Console.WriteLine(message);
-        }
+        String message = result > 0 ? "Insert Data Success." : "Insert Data Fail.";
+        Console.WriteLine(message);
+    }
 
-        public void Update(int id, string title, string author, string content)
+    public void Update(int id, string title, string author, string content)
+    {
+        var item = new BlogDto
         {
-            var item = new BlogDto
-            {
-                BlogId = id,
-                BlogTitle = title,
-                BlogAuthor = author,
-                BlogContent = content
-            };
+            BlogId = id,
+            BlogTitle = title,
+            BlogAuthor = author,
+            BlogContent = content
+        };
 
-            string query = @"UPDATE [dbo].[tbl_blog]
+        string query = @"UPDATE [dbo].[tbl_blog]
                             SET [BlogTitle] = @BlogTitle,
                             [BlogAuthor] = @BlogAuthor,
                             [BlogContent] = @BlogContent
                             Where BlogId = @BlogId";
 
-            using IDbConnection db = new SqlConnection(SqlConnectionString.stringBuilder.ConnectionString);
-            int result = db.Execute(query, item);
+        using IDbConnection db = new SqlConnection(_stringBuilder.ConnectionString);
+        int result = db.Execute(query, item);
 
-            string message = result > 0 ? "Update Data Successfully." : "Update Data Fail.";
-            Console.WriteLine(message);
-        }
+        string message = result > 0 ? "Update Data Successfully." : "Update Data Fail.";
+        Console.WriteLine(message);
+    }
 
-        public void Delete(int id)
+    public void Delete(int id)
+    {
+        var item = new BlogDto()
         {
-            var item = new BlogDto()
-            {
-                BlogId = id
-            };
+            BlogId = id
+        };
 
-            string query = @"Delete from [dbo].[tbl_blog] where BlogId = @BlogId";
+        string query = @"Delete from [dbo].[tbl_blog] where BlogId = @BlogId";
 
-            using IDbConnection db = new SqlConnection(SqlConnectionString.stringBuilder.ConnectionString);
-            int result = db.Execute(query, item);
+        using IDbConnection db = new SqlConnection(_stringBuilder.ConnectionString);
+        int result = db.Execute(query, item);
 
-            string message = result > 0 ? "Delete Data Successfully." : "Delete Data Fail.";
-            Console.WriteLine(message);
-        }
+        string message = result > 0 ? "Delete Data Successfully." : "Delete Data Fail.";
+        Console.WriteLine(message);
     }
 }
 

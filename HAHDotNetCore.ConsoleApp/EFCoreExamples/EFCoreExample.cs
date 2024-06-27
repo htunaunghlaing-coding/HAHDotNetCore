@@ -4,7 +4,12 @@ namespace HAHDotNetCore.ConsoleApp;
 internal class EFCoreExample
 {
 
-    private readonly AppDbContext appDbContext = new AppDbContext();
+    private readonly AppDbContext appDbContext;
+
+    public EFCoreExample(AppDbContext appDbContext)
+    {
+        this.appDbContext = appDbContext;
+    }
 
     public void Run()
     {
