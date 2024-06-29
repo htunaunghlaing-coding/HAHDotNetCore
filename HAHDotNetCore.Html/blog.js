@@ -2,6 +2,27 @@ const tblBlog = "blogs";
 let blogId = null;
 
 getBlogsTable();
+test1();
+
+function test() {
+  let confirmMsg = new Promise(function (success, fail) {
+    const result = confirm("Are you sure want to delete?");
+    if (result == true) {
+      success();
+    } else {
+      fail();
+    }
+  });
+
+  confirmMsg.then(
+    function (value) {
+      successMessage("Success");
+    },
+    function (error) {
+      successMessage("Fail");
+    }
+  );
+}
 
 //createBlog();
 // updateBlog(
@@ -87,33 +108,25 @@ function updateBlog(id, title, author, content) {
 }
 
 function deleteBlog(id) {
-  let result = confirm("Are you sure want to delete?");
-  if (!result) return;
+  // let result = confirm("Are you sure want to delete?");
+  // if (!result) return;
+  confirmMessage("Are you sure want to delete?").then(function (value) {
+    let lst = getBlogs();
 
-  let lst = getBlogs();
+    const items = lst.filter((x) => x.id === id);
+    if (items.length == 0) {
+      console.log("Data Not found.");
+      return;
+    }
 
-  const items = lst.filter((x) => x.id === id);
-  if (items.length == 0) {
-    console.log("Data Not found.");
-    return;
-  }
+    lst = lst.filter((x) => x.id !== id);
+    const jsonBlog = JSON.stringify(lst);
+    localStorage.setItem(tblBlog, jsonBlog);
 
-  lst = lst.filter((x) => (x.id !== id));
-  const jsonBlog = JSON.stringify(lst);
-  localStorage.setItem(tblBlog, jsonBlog);
-
-  successMessage("Delete Data Successfully.");
-  clearControl();
-  getBlogsTable();
-}
-
-function uuidv4() {
-  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) =>
-    (
-      +c ^
-      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
-    ).toString(16)
-  );
+    successMessage("Delete Data Successfully.");
+    clearControl();
+    getBlogsTable();
+  });
 }
 
 function getBlogs() {
@@ -141,22 +154,6 @@ $("#btnSave").click(function () {
   clearControl();
   getBlogsTable();
 });
-
-function successMessage(message) {
-  Swal.fire({
-    title: "Success!",
-    text: message,
-    icon: "success"
- });
-}
-
-function errorMessage(message) {
-  Swal.fire({
-    title: "Error!",
-    text: message,
-    icon: "error"
- });
-}
 
 function clearControl() {
   $("#txtTitle").val("");
