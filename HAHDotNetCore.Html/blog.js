@@ -2,7 +2,7 @@ const tblBlog = "blogs";
 let blogId = null;
 
 getBlogsTable();
-test1();
+// test1();
 
 function test() {
   let confirmMsg = new Promise(function (success, fail) {
