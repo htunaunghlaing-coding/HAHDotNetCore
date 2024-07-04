@@ -5,49 +5,35 @@ const tblProduct = "products";
 //   "60f2a5a2-f9df-4051-83ac-3e6b4538d13c",
 //   "Cheese Cake",
 //   "Bakery",
-//   1,
 //   "4000 MMK"
 // );
 deleteProduct("60f2a5a2-f9df-4051-83ac-3e6b4538d13c");
 
-
 function readProduct() {
-  localStorage.getItem();
+  let list = localStorage.getItem();
+  console.log(list);
 }
 
-function createProduct() {
-  const products = localStorage.getItem(tblProduct);
-  console.log(products);
+function createProduct(name, category, price) {
+  let list = getProducts();
 
   const requestModel = {
     id: uuidv4(),
-    name: "Mini Croissant",
-    category: "Bakery",
-    quantity: 1,
-    price: "5500 MMK",
+    name: name,
+    category: category,
+    price: price,
   };
-
-  let list = [];
-
-  if (products !== null) {
-    list = JSON.parse(products);
-    console.log(list);
-  }
 
   list.push(requestModel);
 
   const jsonProduct = JSON.stringify(list);
   localStorage.setItem(tblProduct, jsonProduct);
+
+  successMessage("Create A Product Successfully.")
 }
 
-function updateProduct(id, name, category, quantity, price) {
-  const products = localStorage.getItem(tblProduct);
-  console.log(products);
-
-  let list = [];
-  if (products !== null) {
-    list = JSON.parse(products);
-  }
+function updateProduct(id, name, category, price) {
+  let list = getProducts();
 
   const items = list.filter((x) => x.id === id);
   console.log(items);
@@ -62,7 +48,6 @@ function updateProduct(id, name, category, quantity, price) {
   const item = items[0];
   item.name = name;
   item.category = category;
-  item.quantity = quantity;
   item.price = price;
 
   const index = list.findIndex((x) => x.id === id);
@@ -73,17 +58,11 @@ function updateProduct(id, name, category, quantity, price) {
 }
 
 function deleteProduct(id) {
-  const products = localStorage.getItem(tblProduct);
-  console.log(products);
-
-  let list = [];
-  if (products !== null) {
-    list = JSON.parse(products);
-  }
+  let list = getProducts();
 
   const items = list.filter((x) => x.id === id);
   if (items.length == 0) {
-    console.log("No Data Found in the table.");
+    console.log("No Data Found in the table.");  
     return;
   }
 
@@ -99,4 +78,31 @@ function uuidv4() {
       (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
     ).toString(16)
   );
+}
+
+function getProducts() {
+  const products = localStorage.getItem(tblProduct);
+  console.log(products);
+
+  let list = [];
+  if (products !== null) {
+    list = JSON.parse(products);
+  }
+  return list;
+}
+
+$('#btnSave').click(function(){
+  const name = $('#txtProductName').val();
+  const category = $('#txtCategory').val();
+  const price = $('#txtPrice').val();
+
+  createProduct(name, category, price);
+});
+
+function successMessage(message){
+  alert(message);
+}
+
+function errorMessage(message){
+  alert(message);
 }
