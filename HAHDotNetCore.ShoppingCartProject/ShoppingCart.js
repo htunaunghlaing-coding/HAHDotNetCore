@@ -1,5 +1,6 @@
 const tblProduct = "products";
 
+getProductsTable();
 // createProduct();
 // updateProduct(
 //   "60f2a5a2-f9df-4051-83ac-3e6b4538d13c",
@@ -29,7 +30,8 @@ function createProduct(name, category, price) {
   const jsonProduct = JSON.stringify(list);
   localStorage.setItem(tblProduct, jsonProduct);
 
-  successMessage("Create A Product Successfully.")
+  successMessage("Create A Product Successfully.");
+  clearControl();
 }
 
 function updateProduct(id, name, category, price) {
@@ -62,7 +64,7 @@ function deleteProduct(id) {
 
   const items = list.filter((x) => x.id === id);
   if (items.length == 0) {
-    console.log("No Data Found in the table.");  
+    console.log("No Data Found in the table.");
     return;
   }
 
@@ -91,18 +93,43 @@ function getProducts() {
   return list;
 }
 
-$('#btnSave').click(function(){
-  const name = $('#txtProductName').val();
-  const category = $('#txtCategory').val();
-  const price = $('#txtPrice').val();
+$("#btnSave").click(function () {
+  const name = $("#txtProductName").val();
+  const category = $("#txtCategory").val();
+  const price = $("#txtPrice").val();
 
   createProduct(name, category, price);
 });
 
-function successMessage(message){
+function successMessage(message) {
   alert(message);
 }
 
-function errorMessage(message){
+function errorMessage(message) {
   alert(message);
+}
+
+function clearControl() {
+  $("#txtProductName").val(" ");
+  $("#txtCategory").val(" ");
+  $("#txtPrice").val(" ");
+  $("#txtProductName").focus();
+}
+
+function getProductsTable() {
+  const list = getProducts();
+  let count = 0;
+  let htmlRows = "";
+  list.forEach((item) => {
+    const htmlRow = `
+      <tr>
+          <td>${++count}</td>
+          <td>${item.name}</td>
+          <td>${item.category}</td>
+          <td>${item.price}</td>
+      </tr>
+      `;
+    htmlRows += htmlRow;
+  });
+  $("#tbody").html(htmlRows);
 }
