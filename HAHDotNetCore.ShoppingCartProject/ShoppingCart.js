@@ -1,25 +1,13 @@
 const tblProduct = "products";
+let productId = null;  
 
 getProductsTable();
-// createProduct();
-// updateProduct(
-//   "60f2a5a2-f9df-4051-83ac-3e6b4538d13c",
-//   "Cheese Cake",
-//   "Bakery",
-//   "4000 MMK"
-// );
-deleteProduct("60f2a5a2-f9df-4051-83ac-3e6b4538d13c");
-
-function readProduct() {
-  let list = localStorage.getItem();
-  console.log(list);
-}
 
 function createProduct(name, category, price) {
   let list = getProducts();
 
   const requestModel = {
-    id: uuidv4(),
+    id: uuidv4(),  
     name: name,
     category: category,
     price: price,
@@ -34,16 +22,33 @@ function createProduct(name, category, price) {
   clearControl();
 }
 
+function editProduct(id) {
+  let list = getProducts();
+
+  const items = list.filter((x) => x.id === id);
+  console.log(items);
+
+  if (items.length == 0) {
+    errorMessage("Not data found in the table.");
+    return;
+  }
+
+  let item = items[0];
+  productId = item.id;  
+  $("#txtProductName").val(item.name);
+  $("#txtCategory").val(item.category);
+  $("#txtPrice").val(item.price);
+  $("#txtProductName").focus();
+}
+
 function updateProduct(id, name, category, price) {
   let list = getProducts();
 
   const items = list.filter((x) => x.id === id);
   console.log(items);
 
-  console.log(items.length);
-
   if (items.length == 0) {
-    console.log("Not data found in the table.");
+    errorMessage("Not data found in the table.");
     return;
   }
 
@@ -57,9 +62,15 @@ function updateProduct(id, name, category, price) {
 
   const jsonProduct = JSON.stringify(list);
   localStorage.setItem(tblProduct, jsonProduct);
+
+  successMessage("Update Data Successfully.");
 }
 
 function deleteProduct(id) {
+  let result = confirm("Are You Sure Want To Delete This Product?.");
+
+  if (!result) return;
+
   let list = getProducts();
 
   const items = list.filter((x) => x.id === id);
@@ -71,6 +82,9 @@ function deleteProduct(id) {
   list = list.filter((x) => x.id !== id);
   const jsonProduct = JSON.stringify(list);
   localStorage.setItem(tblProduct, jsonProduct);
+
+  successMessage("Delete Data Successfully.");
+  getProductsTable();
 }
 
 function uuidv4() {
@@ -98,7 +112,15 @@ $("#btnSave").click(function () {
   const category = $("#txtCategory").val();
   const price = $("#txtPrice").val();
 
-  createProduct(name, category, price);
+  if (productId === null) {
+    createProduct(name, category, price);
+  } else {
+    updateProduct(productId, name, category, price);
+    productId = null; 
+  }
+
+  getProductsTable();
+  clearControl();
 });
 
 function successMessage(message) {
@@ -110,10 +132,11 @@ function errorMessage(message) {
 }
 
 function clearControl() {
-  $("#txtProductName").val(" ");
-  $("#txtCategory").val(" ");
-  $("#txtPrice").val(" ");
+  $("#txtProductName").val("");
+  $("#txtCategory").val("");
+  $("#txtPrice").val("");
   $("#txtProductName").focus();
+  productId = null;  
 }
 
 function getProductsTable() {
@@ -127,8 +150,16 @@ function getProductsTable() {
           <td>${item.name}</td>
           <td>${item.category}</td>
           <td>${item.price}</td>
+          <td>
+            <button type="button" class="btn btn-warning btn-sm me-4" onclick="editProduct('${item.id}')">
+              <i class="fa fa-edit"></i> Edit
+            </button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="deleteProduct('${item.id}')">
+              <i class="fa fa-trash"></i> Delete
+            </button>
+          </td>
       </tr>
-      `;
+    `;
     htmlRows += htmlRow;
   });
   $("#tbody").html(htmlRows);
