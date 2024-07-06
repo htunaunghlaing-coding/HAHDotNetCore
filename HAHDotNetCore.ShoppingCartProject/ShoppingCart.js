@@ -1,5 +1,5 @@
 const tblProduct = "products";
-let productId = null;  
+let productId = null;
 
 getProductsTable();
 
@@ -7,7 +7,7 @@ function createProduct(name, category, price) {
   let list = getProducts();
 
   const requestModel = {
-    id: uuidv4(),  
+    id: uuidv4(),
     name: name,
     category: category,
     price: price,
@@ -18,7 +18,7 @@ function createProduct(name, category, price) {
   const jsonProduct = JSON.stringify(list);
   localStorage.setItem(tblProduct, jsonProduct);
 
-  successMessage("Create A Product Successfully.");
+  successMessage("Product Created Successfully.");
   clearControl();
 }
 
@@ -28,13 +28,13 @@ function editProduct(id) {
   const items = list.filter((x) => x.id === id);
   console.log(items);
 
-  if (items.length == 0) {
-    errorMessage("Not data found in the table.");
+  if (items.length === 0) {
+    errorMessage("No data found in the table.");
     return;
   }
 
   let item = items[0];
-  productId = item.id;  
+  productId = item.id;
   $("#txtProductName").val(item.name);
   $("#txtCategory").val(item.category);
   $("#txtPrice").val(item.price);
@@ -47,8 +47,8 @@ function updateProduct(id, name, category, price) {
   const items = list.filter((x) => x.id === id);
   console.log(items);
 
-  if (items.length == 0) {
-    errorMessage("Not data found in the table.");
+  if (items.length === 0) {
+    errorMessage("No data found in the table.");
     return;
   }
 
@@ -63,27 +63,21 @@ function updateProduct(id, name, category, price) {
   const jsonProduct = JSON.stringify(list);
   localStorage.setItem(tblProduct, jsonProduct);
 
-  successMessage("Update Data Successfully.");
+  successMessage("Product Updated Successfully.");
 }
 
 function deleteProduct(id) {
-  let result = confirm("Are You Sure Want To Delete This Product?.");
+  let result = confirm("Are you sure you want to delete this product?");
 
   if (!result) return;
 
   let list = getProducts();
 
-  const items = list.filter((x) => x.id === id);
-  if (items.length == 0) {
-    console.log("No Data Found in the table.");
-    return;
-  }
-
   list = list.filter((x) => x.id !== id);
   const jsonProduct = JSON.stringify(list);
   localStorage.setItem(tblProduct, jsonProduct);
 
-  successMessage("Delete Data Successfully.");
+  successMessage("Product Deleted Successfully.");
   getProductsTable();
 }
 
@@ -98,8 +92,6 @@ function uuidv4() {
 
 function getProducts() {
   const products = localStorage.getItem(tblProduct);
-  console.log(products);
-
   let list = [];
   if (products !== null) {
     list = JSON.parse(products);
@@ -108,18 +100,58 @@ function getProducts() {
 }
 
 $("#btnSave").click(function () {
-  const name = $("#txtProductName").val();
-  const category = $("#txtCategory").val();
-  const price = $("#txtPrice").val();
+  const name = $("#txtProductName").val().trim();
+  const category = $("#txtCategory").val().trim();
+  const price = $("#txtPrice").val().trim();
+
+  $(".form-control").removeClass("warning");
+  $(".warning-message").remove();
+
+  let hasError = false;
+
+  if (!name) {
+    console.log("Product Name is empty");
+    $("#txtProductName").addClass("warning");
+    $("#txtProductName").after(
+      '<div class="warning-message">Product Name is required.</div>'
+    );
+    hasError = true;
+  }
+
+  if (!category) {
+    console.log("Product Category is empty");
+    $("#txtCategory").addClass("warning");
+    $("#txtCategory").after(
+      '<div class="warning-message">Product Category is required.</div>'
+    );
+    hasError = true;
+  }
+
+  if (!price) {
+    console.log("Product Price is empty");
+    $("#txtPrice").addClass("warning");
+    $("#txtPrice").after(
+      '<div class="warning-message">Product Price is required.</div>'
+    );
+    hasError = true;
+  }
+
+  if (hasError) {
+    return;
+  }
 
   if (productId === null) {
     createProduct(name, category, price);
   } else {
     updateProduct(productId, name, category, price);
-    productId = null; 
+    productId = null;
   }
 
   getProductsTable();
+  clearControl();
+});
+
+$("#btnCancel").click(function () {
   clearControl();
 });
 
@@ -136,7 +168,10 @@ function clearControl() {
   $("#txtCategory").val("");
   $("#txtPrice").val("");
   $("#txtProductName").focus();
-  productId = null;  
+  productId = null;
+
+  $(".form-control").removeClass("warning");
+  $(".warning-message").remove();
 }
 
 function getProductsTable() {
@@ -145,21 +180,30 @@ function getProductsTable() {
   let htmlRows = "";
   list.forEach((item) => {
     const htmlRow = `
-      <tr>
-          <td>${++count}</td>
-          <td>${item.name}</td>
-          <td>${item.category}</td>
-          <td>${item.price}</td>
-          <td>
-            <button type="button" class="btn btn-warning btn-sm me-4" onclick="editProduct('${item.id}')">
-              <i class="fa fa-edit"></i> Edit
-            </button>
-            <button type="button" class="btn btn-danger btn-sm" onclick="deleteProduct('${item.id}')">
-              <i class="fa fa-trash"></i> Delete
-            </button>
-          </td>
-      </tr>
-    `;
+                <tr>
+                    <td>${++count}</td>
+                    <td>${item.name}</td>
+                    <td>${item.category}</td>
+                    <td>${item.price}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm me-4" onclick="editProduct('${
+                          item.id
+                        }')">
+                            <i class="fa fa-edit"></i> Edit
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm me-4" onclick="deleteProduct('${
+                          item.id
+                        }')">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm " onclick="deleteProduct('${
+                          item.id
+                        }')">
+                        <i class="fa-solid fa-plus"></i> Add
+                        </button>
+                    </td>
+                </tr>
+            `;
     htmlRows += htmlRow;
   });
   $("#tbody").html(htmlRows);
