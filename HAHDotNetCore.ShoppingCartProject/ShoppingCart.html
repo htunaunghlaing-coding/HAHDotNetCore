@@ -31,6 +31,21 @@
         .btn-group {
             margin-top: 1rem;
         }
+
+        #btnCart {
+            position: relative;
+        }
+
+        #cartCount {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.75em;
+        }
     </style>
 </head>
 
@@ -45,11 +60,12 @@
                     </h1>
                 </a>
                 <form class="d-flex ms-auto" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                    <button class="btn btn-outline-dark ms-2" type="button" id="btnCart">
+                    <a href="CartItemLists.html" class="btn btn-outline-dark ms-2" id="btnCart">
                         <i class="fas fa-cart-plus"></i>
-                    </button>
+                        <span id="cartCount">0</span>
+                    </a>
                 </form>
             </div>
         </nav>

@@ -2,6 +2,7 @@ const tblProduct = "products";
 let productId = null;
 
 getProductsTable();
+updateCartCount();
 
 function createProduct(name, category, price) {
   let list = getProducts();
@@ -196,15 +197,98 @@ function getProductsTable() {
                         }')">
                             <i class="fa fa-trash"></i> Delete
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm " onclick="deleteProduct('${
+                        <button type="button" class="btn btn-primary btn-sm " onclick="addToCart('${
                           item.id
                         }')">
-                        <i class="fa-solid fa-plus"></i> Add
+                            <i class="fa-solid fa-plus"></i> Add
                         </button>
                     </td>
                 </tr>
             `;
     htmlRows += htmlRow;
   });
+  $("#tbody").html(htmlRows);
+}
+
+function addToCart(id) {
+  const list = getProducts();
+  const item = list.find((product) => product.id === id);
+
+  if (item) {
+    item.count = (item.count || 0) + 1;
+
+    localStorage.setItem(tblProduct, JSON.stringify(list));
+    updateCartCount();
+    successMessage("Product Added To Cart");
+  } else {
+    errorMessage("Product not found.");
+  }
+}
+
+function updateCartCount() {
+  const list = getProducts();
+  let totalItems = 0;
+
+  list.forEach((item) => {
+    totalItems += item.count || 0;
+  });
+
+  console.log("Total items in cart:", totalItems);
+  $("#cartCount").text(totalItems);
+}
+
+$("form").submit(function (event) {
+  event.preventDefault();
+
+  const searchTerm = $("#searchInput").val().trim().toLowerCase();
+
+  if (!searchTerm) {
+    getProductsTable();
+    return;
+  }
+
+  const list = getProducts();
+  const filteredProducts = list.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchTerm) ||
+      product.category.toLowerCase().includes(searchTerm) ||
+      product.price.toLowerCase().includes(searchTerm)
+  );
+
+  displayFilteredProducts(filteredProducts);
+});
+
+function displayFilteredProducts(products) {
+  let count = 0;
+  let htmlRows = "";
+  products.forEach((item) => {
+    const htmlRow = `
+            <tr>
+                <td>${++count}</td>
+                <td>${item.name}</td>
+                <td>${item.category}</td>
+                <td>${item.price}</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm me-4" onclick="editProduct('${
+                      item.id
+                    }')">
+                        <i class="fa fa-edit"></i> Edit
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm me-4" onclick="deleteProduct('${
+                      item.id
+                    }')">
+                        <i class="fa fa-trash"></i> Delete
+                    </button>
+                    <button type="button" class="btn btn-primary btn-sm " onclick="addToCart('${
+                      item.id
+                    }')">
+                        <i class="fa-solid fa-plus"></i> Add
+                    </button>
+                </td>
+            </tr>
+        `;
+    htmlRows += htmlRow;
+  });
+
   $("#tbody").html(htmlRows);
 }
