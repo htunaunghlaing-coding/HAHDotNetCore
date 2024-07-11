@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.NLayer.DataAc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.RestApiDependencyInjection", "HAHDotNetCore.RestApiDependencyInjection\HAHDotNetCore.RestApiDependencyInjection.csproj", "{BBE01967-E6AF-438F-9ED4-4C2BD0BECE5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.MinimalApi", "HAHDotNetCore.MinimalApi\HAHDotNetCore.MinimalApi.csproj", "{8F4F758C-0A7B-490D-A0B9-0626E158D270}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{BBE01967-E6AF-438F-9ED4-4C2BD0BECE5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBE01967-E6AF-438F-9ED4-4C2BD0BECE5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBE01967-E6AF-438F-9ED4-4C2BD0BECE5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F4F758C-0A7B-490D-A0B9-0626E158D270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4F758C-0A7B-490D-A0B9-0626E158D270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4F758C-0A7B-490D-A0B9-0626E158D270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4F758C-0A7B-490D-A0B9-0626E158D270}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
