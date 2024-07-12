@@ -36,6 +36,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.RestApiDepend
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.MinimalApi", "HAHDotNetCore.MinimalApi\HAHDotNetCore.MinimalApi.csproj", "{8F4F758C-0A7B-490D-A0B9-0626E158D270}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.BlazorServerApp", "HAHDotNetCore.BlazorServerApp\HAHDotNetCore.BlazorServerApp.csproj", "{80D30957-AC51-4330-8D87-8FA474A4FC2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.BlazorWebAssemblyApp", "HAHDotNetCore.BlazorWebAssemblyApp\HAHDotNetCore.BlazorWebAssemblyApp.csproj", "{0184523F-B744-43CE-84A8-90B721B3417F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.BlazorClientServer.Server", "HAHDotNetCore.BlazorClientServer\Server\HAHDotNetCore.BlazorClientServer.Server.csproj", "{6149B416-7CE1-4B0D-ABA0-8AD258404331}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.BlazorClientServer.Client", "HAHDotNetCore.BlazorClientServer\Client\HAHDotNetCore.BlazorClientServer.Client.csproj", "{7A58E34C-B212-4FE3-9423-6EA5319C4C98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.BlazorClientServer.Shared", "HAHDotNetCore.BlazorClientServer\Shared\HAHDotNetCore.BlazorClientServer.Shared.csproj", "{D2468A3C-C8DC-492D-A8D4-AE9C087A2A0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +108,26 @@ Global
 		{8F4F758C-0A7B-490D-A0B9-0626E158D270}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F4F758C-0A7B-490D-A0B9-0626E158D270}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F4F758C-0A7B-490D-A0B9-0626E158D270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80D30957-AC51-4330-8D87-8FA474A4FC2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D30957-AC51-4330-8D87-8FA474A4FC2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D30957-AC51-4330-8D87-8FA474A4FC2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D30957-AC51-4330-8D87-8FA474A4FC2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0184523F-B744-43CE-84A8-90B721B3417F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0184523F-B744-43CE-84A8-90B721B3417F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0184523F-B744-43CE-84A8-90B721B3417F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0184523F-B744-43CE-84A8-90B721B3417F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6149B416-7CE1-4B0D-ABA0-8AD258404331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6149B416-7CE1-4B0D-ABA0-8AD258404331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6149B416-7CE1-4B0D-ABA0-8AD258404331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6149B416-7CE1-4B0D-ABA0-8AD258404331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A58E34C-B212-4FE3-9423-6EA5319C4C98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A58E34C-B212-4FE3-9423-6EA5319C4C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A58E34C-B212-4FE3-9423-6EA5319C4C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A58E34C-B212-4FE3-9423-6EA5319C4C98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2468A3C-C8DC-492D-A8D4-AE9C087A2A0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2468A3C-C8DC-492D-A8D4-AE9C087A2A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2468A3C-C8DC-492D-A8D4-AE9C087A2A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2468A3C-C8DC-492D-A8D4-AE9C087A2A0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
