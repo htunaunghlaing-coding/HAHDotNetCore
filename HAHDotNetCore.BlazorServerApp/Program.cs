@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using HAHDotNetCore.BlazorServerApp.Data;
-using HAHDotNetCore.BlazorServerApp.Db;
+using HAHDotNetCore.BlazorServerApp;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

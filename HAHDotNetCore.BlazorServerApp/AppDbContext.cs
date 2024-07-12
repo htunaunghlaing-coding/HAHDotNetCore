@@ -1,7 +1,8 @@
 ﻿using System;
+using HAHDotNetCore.BlazorServerApp.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace HAHDotNetCore.BlazorServerApp.Db;
+namespace HAHDotNetCore.BlazorServerApp;
 
 public class AppDbContext : DbContext
 {
@@ -12,4 +13,3 @@ public class AppDbContext : DbContext
 
     public DbSet<BlogModel> Blogs { get; set; }
 }
-
