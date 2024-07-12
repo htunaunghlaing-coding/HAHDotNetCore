@@ -44,7 +44,7 @@
                     <td>@item.BlogContent</td>
                     <td>
                         <button type="button" class="btn btn-primary" @onclick="() => Edit(item)">Edit</button>
-                        <button type="button" class="btn btn-danger" @onclick="Save">Delete</button>
+                        <button type="button" class="btn btn-danger" @onclick="() => Delete(item.BlogId)">Delete</button>
                     </td>
                 </tr>
             }
@@ -108,6 +108,17 @@
 
         //requestModel = result;
         //StateHasChanged();
+    }
+
+    private async Task Delete(int id)
+    {
+        var item = await _db.Blogs.AsNoTracking().FirstOrDefaultAsync(x => x.BlogId == id);
+        if (item is null) return;
+
+        _db.Remove(item);
+        await _db.SaveChangesAsync();
+        requestModel = new();
+        await List();
     }
 }
 
