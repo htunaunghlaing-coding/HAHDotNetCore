@@ -2,7 +2,6 @@
 
 <PageTitle>Blazor Web Assembly</PageTitle>
 
-<span>Count : @Blogs.Count</span>
 <div class="mb-3">
     <label class="form-label">Blog Title</label>
     <input type="text" class="form-control" @bind-value="requestModel.BlogTitle">
@@ -18,6 +17,39 @@
 <button type="button" class="btn btn-dark" @onclick="Cancel">Cancel</button>
 <button type="button" class="btn btn-success" @onclick="Save">Save</button>
 
+@if (Blogs is not null)
+{
+    int count = 0;
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Content</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Blogs)
+            {
+                <tr>
+                    <td>@(++count)</td>
+                    <td>@item.BlogId</td>
+                    <td>@item.BlogTitle</td>
+                    <td>@item.BlogAuthor</td>
+                    <td>@item.BlogContent</td>
+                    <td>
+                        <button type="button" class="btn btn-dark" @onclick="Edit">Edit</button>
+                        <button type="button" class="btn btn-success" @onclick="Delete">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
 @code {
     private BlogModel requestModel = new();
     private List<BlogModel> Blogs = new List<BlogModel>();
@@ -26,9 +58,20 @@
     {
         requestModel.BlogId = Guid.NewGuid().ToString();
         Blogs.Add(requestModel);
+        requestModel = new();
     }
 
     private void Cancel()
+    {
+        requestModel = new();
+    }
+
+    private void Edit()
+    {
+
+    }
+
+    private void Delete()
     {
 
     }
