@@ -94,8 +94,11 @@ else
         requestModel = new();
     }
 
-    private void Delete(string id)
+    private void Delete(string blogId)
     {
+        var index = Blogs.FindIndex(x => x.BlogId == blogId);
+        if (index == -1) return;
 
+        Blogs.RemoveAt(index);
     }
 }
