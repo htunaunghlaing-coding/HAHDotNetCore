@@ -14,10 +14,18 @@
     <label class="form-label">Blog Content</label>
     <input type="text" class="form-control" @bind-value="requestModel.BlogContent">
 </div>
-<button type="button" class="btn btn-dark" @onclick="Cancel">Cancel</button>
-<button type="button" class="btn btn-success" @onclick="Save">Save</button>
 
-@if (Blogs is not null)
+<button type="button" class="btn btn-dark me-2" @onclick="Cancel">Cancel</button>
+@if (requestModel.BlogId == null)
+{
+    <button type="button" class="btn btn-success" @onclick="Save">Save</button>
+}
+else
+{
+    <button type="button" class="btn btn-success" @onclick="Update">Update</button>
+}
+
+@if (Blogs != null && Blogs.Count > 0)
 {
     int count = 0;
     <table class="table">
@@ -41,8 +49,8 @@
                     <td>@item.BlogAuthor</td>
                     <td>@item.BlogContent</td>
                     <td>
-                        <button type="button" class="btn btn-dark" @onclick="Edit">Edit</button>
-                        <button type="button" class="btn btn-success" @onclick="Delete">Delete</button>
+                        <button type="button" class="btn btn-primary me-2" @onclick="() => Edit(item.BlogId)">Edit</button>
+                        <button type="button" class="btn btn-danger" @onclick="() => Delete(item.BlogId)">Delete</button>
                     </td>
                 </tr>
             }
@@ -66,14 +74,28 @@
         requestModel = new();
     }
 
-    private void Edit()
+    private void Edit(string id)
     {
+        var item = Blogs.FirstOrDefault(x => x.BlogId == id);
+        if (item is null) return;
 
+        requestModel.BlogId = item.BlogId;
+        requestModel.BlogTitle = item.BlogTitle;
+        requestModel.BlogAuthor = item.BlogAuthor;
+        requestModel.BlogContent = item.BlogContent;
     }
 
-    private void Delete()
+    private void Update()
+    {
+        var index = Blogs.FindIndex(x => x.BlogId == requestModel.BlogId);
+        if (index == -1) return;
+
+        Blogs[index] = requestModel;
+        requestModel = new();
+    }
+
+    private void Delete(string id)
     {
 
     }
 }
-
