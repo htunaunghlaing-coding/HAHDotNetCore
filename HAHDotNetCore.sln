@@ -46,6 +46,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.BlazorClientS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.BlazorClientServer.Shared", "HAHDotNetCore.BlazorClientServer\Shared\HAHDotNetCore.BlazorClientServer.Shared.csproj", "{D2468A3C-C8DC-492D-A8D4-AE9C087A2A0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.BlazorWebAssemblyAppApi", "HAHDotNetCore.BlazorWebAssemblyAppApi\HAHDotNetCore.BlazorWebAssemblyAppApi.csproj", "{745F7CC4-22CD-42DF-862C-DEFF68F34B75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.MvcApp", "HAHDotNetCore.MvcApp\HAHDotNetCore.MvcApp.csproj", "{74C41BC3-2A48-474B-9735-155A8465C5A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +132,14 @@ Global
 		{D2468A3C-C8DC-492D-A8D4-AE9C087A2A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2468A3C-C8DC-492D-A8D4-AE9C087A2A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2468A3C-C8DC-492D-A8D4-AE9C087A2A0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{745F7CC4-22CD-42DF-862C-DEFF68F34B75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{745F7CC4-22CD-42DF-862C-DEFF68F34B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{745F7CC4-22CD-42DF-862C-DEFF68F34B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{745F7CC4-22CD-42DF-862C-DEFF68F34B75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74C41BC3-2A48-474B-9735-155A8465C5A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74C41BC3-2A48-474B-9735-155A8465C5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74C41BC3-2A48-474B-9735-155A8465C5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74C41BC3-2A48-474B-9735-155A8465C5A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
