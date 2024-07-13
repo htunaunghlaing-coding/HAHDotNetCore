@@ -1,0 +1,36 @@
+﻿@page "/blog"
+
+<PageTitle>Blazor Web Assembly</PageTitle>
+
+<span>Count : @Blogs.Count</span>
+<div class="mb-3">
+    <label class="form-label">Blog Title</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogTitle">
+</div>
+<div class="mb-3">
+    <label class="form-label">Blog Author</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogAuthor">
+</div>
+<div class="mb-3">
+    <label class="form-label">Blog Content</label>
+    <input type="text" class="form-control" @bind-value="requestModel.BlogContent">
+</div>
+<button type="button" class="btn btn-dark" @onclick="Cancel">Cancel</button>
+<button type="button" class="btn btn-success" @onclick="Save">Save</button>
+
+@code {
+    private BlogModel requestModel = new();
+    private List<BlogModel> Blogs = new List<BlogModel>();
+
+    private void Save()
+    {
+        requestModel.BlogId = Guid.NewGuid().ToString();
+        Blogs.Add(requestModel);
+    }
+
+    private void Cancel()
+    {
+
+    }
+}
+
