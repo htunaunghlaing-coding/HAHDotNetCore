@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HAHDotNetCore.MvcApp.Db;
+using HAHDotNetCore.MvcApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,20 @@ public class BlogController : Controller
     {
         var lst = await _db.Blogs.ToListAsync();
         return View(lst);
+    }
+
+    [ActionName("Create")]
+    public IActionResult BlogCreate()
+    {
+        return View("CreateBlog");
+    }
+
+    [ActionName("Save")]
+    public async Task<IActionResult> BlogCreateAsync(BlogModel blog)
+    {
+        await _db.Blogs.AddAsync(blog);
+        var result = await _db.SaveChangesAsync();
+        return Redirect("/Blog");
     }
 }
 
