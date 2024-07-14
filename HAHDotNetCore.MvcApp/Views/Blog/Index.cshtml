@@ -15,6 +15,7 @@
             <th>Blog Title</th>
             <th>Blog Author</th>
             <th>Blog Content</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,10 @@
                 <td>@item.BlogTitle</td>
                 <td>@item.BlogAuthor</td>
                 <td>@item.BlogContent</td>
+                <td>
+                    <a href="/Blog/Edit/@item.BlogId" class="btn btn-primary">Edit</a>
+                    <a href="/Blog/Delete/@item.BlogId" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>
