@@ -12,11 +12,13 @@
     <None Remove="Views\Blog\" />
     <None Remove="Db\" />
     <None Remove="Models\" />
+    <None Remove="Views\BlogAjax\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Blog\" />
     <Folder Include="Db\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\BlogAjax\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20" />
