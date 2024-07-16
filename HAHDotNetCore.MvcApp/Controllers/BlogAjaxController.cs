@@ -94,19 +94,31 @@ public class BlogAjaxController : Controller
         return Json(responseModel);
     }
 
-    [HttpGet]
+    [HttpPost]
     [ActionName("Delete")]
-    public async Task<IActionResult> BlogDelete(int id)
+    public async Task<IActionResult> BlogDelete(BlogModel blog)
     {
-        var item = await _db.Blogs.FirstOrDefaultAsync(x => x.BlogId == id);
+        BlogMessageResponseModel responseModel = new BlogMessageResponseModel();
+        var item = await _db.Blogs.FirstOrDefaultAsync(x => x.BlogId == blog.BlogId);
         if (item is null)
         {
-            return Redirect("/Blog");
+            responseModel = new BlogMessageResponseModel()
+            {
+                IsSuccess = false,
+                Message = "No Data Foud."
+            };
+            return Json(responseModel);
         }
 
         _db.Blogs.Remove(item);
-        await _db.SaveChangesAsync();
-        return Redirect("/Blog");
+        int result = await _db.SaveChangesAsync();
+        string message = result > 0 ? "Delete Data Successfully." : "Delete Data Fail.";
+        responseModel = new BlogMessageResponseModel()
+        {
+            IsSuccess = result > 0,
+            Message = message
+        };
+        return Json(responseModel);
     }
 }
 

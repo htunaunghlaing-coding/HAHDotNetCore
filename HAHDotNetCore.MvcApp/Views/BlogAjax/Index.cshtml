@@ -28,9 +28,68 @@
                 <td>@item.BlogContent</td>
                 <td>
                     <a href="/BlogAjax/Edit/@item.BlogId" class="btn btn-primary">Edit</a>
-                    <a href="/BlogAjax/Delete/@item.BlogId" class="btn btn-danger">Delete</a>
+                    @*<a href="/BlogAjax/Delete/@item.BlogId" class="btn btn-danger">Delete</a>*@
+                    <button type="button" class="btn btn-danger btn-delete" data-id="@item.BlogId">Delete</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section scripts {
+    <script>$('.btn-delete').click(function () {
+
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You want to delete this data?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    deleteBlog(id);
+                }
+            });
+        })
+
+        function deleteBlog(id) {
+            let _requestModel = {
+                BlogId: id
+            };
+
+            $.ajax({
+                url: "/BlogAjax/Delete/",
+                data: { blog: _requestModel },
+                type: "POST",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    if (result.IsSuccess) {
+                        Swal.fire({
+                            title: "Success!",
+                            text: result.Message,
+                            icon: "success",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href = "/BlogAjax";
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Errors",
+                            text: result.Message,
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }</script>
+}
+
