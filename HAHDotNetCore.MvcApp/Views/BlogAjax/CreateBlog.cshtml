@@ -17,50 +17,47 @@
 <button type="button" class="btn btn-success" id="btnSave">Save</button>
 
 @section scripts {
-    <script>$(document).ready(function () {
-            $('#btnSave').click(function () {
-                let title = $('#BlogTitle').val();
-                let author = $('#BlogAuthor').val();
-                let content = $('#BlogContent').val();
+    <script>$('#btnSave').click(function () {
+            let title = $('#BlogTitle').val();
+            let author = $('#BlogAuthor').val();
+            let content = $('#BlogContent').val();
 
-                let _requestModel = {
-                    BlogTitle: title,
-                    BlogAuthor: author,
-                    BlogContent: content
-                };
+            let _requestModel = {
+                BlogTitle: title,
+                BlogAuthor: author,
+                BlogContent: content
+            };
 
-                $.ajax({
-                    url: "/BlogAjax/Save",
-                    data: { blog: _requestModel },
-                    type: "POST",
-                    dataType: "json",
-                    success: function (result) {
-                        console.log(result);
-                        if (result.IsSuccess) {
-                            Swal.fire({
-                                title: "Success!",
-                                text: result.Message,
-                                icon: "success",
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    location.href = "/BlogAjax";
-                                }
-                            });
-                        } else {
-                            Swal.fire({
-                                title: "Errors",
-                                text: result.Message,
-                                icon: "error"
-                            });
-                        }
-                    },
-                    error: function (errormessage) {
-                        alert(errormessage.responseText);
+            $.ajax({
+                url: "/BlogAjax/Save",
+                data: { blog: _requestModel },
+                type: "POST",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    if (result.IsSuccess) {
+                        Swal.fire({
+                            title: "Success!",
+                            text: result.Message,
+                            icon: "success",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href = "/BlogAjax";
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Errors",
+                            text: result.Message,
+                            icon: "error"
+                        });
                     }
-                });
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
             });
         });</script>
+
 }
-
-
-
+        /**/

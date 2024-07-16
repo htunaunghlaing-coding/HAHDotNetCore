@@ -66,20 +66,32 @@ public class BlogAjaxController : Controller
 
     [HttpPost]
     [ActionName("Update")]
-    public async Task<IActionResult> BlogUpdate(int id, BlogModel blog)
+    public IActionResult BlogUpdate(int id, BlogModel blog)
     {
-        var item = await _db.Blogs.FirstOrDefaultAsync(x => x.BlogId == id);
+        BlogMessageResponseModel responseModel = new BlogMessageResponseModel();
+        var item = _db.Blogs.FirstOrDefault(x => x.BlogId == id);
         if (item is null)
         {
-            return Redirect("/Blog");
+            responseModel = new BlogMessageResponseModel()
+            {
+                IsSuccess = false,
+                Message = "No Data Found."
+            };
+            return Json(responseModel);
         }
 
         item.BlogTitle = blog.BlogTitle;
         item.BlogAuthor = blog.BlogAuthor;
         item.BlogContent = blog.BlogContent;
 
-        await _db.SaveChangesAsync();
-        return Redirect("/Blog");
+        int result = _db.SaveChanges();
+        string message = result > 0 ? "Update Data Successfully." : "Update Data Fail.";
+        responseModel = new BlogMessageResponseModel()
+        {
+            IsSuccess = result > 0,
+            Message = message
+        };
+        return Json(responseModel);
     }
 
     [HttpGet]
