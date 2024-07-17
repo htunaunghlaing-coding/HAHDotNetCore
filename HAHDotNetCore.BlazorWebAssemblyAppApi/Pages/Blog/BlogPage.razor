@@ -51,7 +51,7 @@ else if (requestModel.BlogId > 0)
                     <td>@item.BlogContent</td>
                     <td>
                         <button type="button" class="btn btn-primary me-2" @onclick="() => Edit(item.BlogId)">Edit</button>
-                        @*<button type="button" class="btn btn-danger" @onclick="() => Delete(item.BlogId)">Delete</button>*@
+                        <button type="button" class="btn btn-danger" @onclick="() => Delete(item.BlogId)">Delete</button>
                     </td>
                 </tr>
             }
@@ -114,6 +114,20 @@ else if (requestModel.BlogId > 0)
             var message = await response.Content.ReadAsStringAsync();
             await JSRuntime.InvokeVoidAsync("alert", message);
             requestModel = new();
+            await List();
+        }
+    }
+
+    private async Task Delete(int id)
+    {
+        var result = await JSRuntime.InvokeAsync<bool>("confirm", "Are you sure want to delete this data?");
+        if (!result) return;
+
+        var response = await HttpClient.DeleteAsync($"{apiEndPoint}/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            var message = await response.Content.ReadAsStringAsync();
+            await JSRuntime.InvokeVoidAsync("alert", message);
             await List();
         }
     }
