@@ -50,6 +50,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.BlazorWebAsse
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.MvcApp", "HAHDotNetCore.MvcApp\HAHDotNetCore.MvcApp.csproj", "{74C41BC3-2A48-474B-9735-155A8465C5A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.WebApi", "DotNetTrainingBatch3.WebApi\DotNetTrainingBatch3.WebApi.csproj", "{A86A26FC-84CA-4CFC-A5AF-D38451087C72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -140,6 +142,10 @@ Global
 		{74C41BC3-2A48-474B-9735-155A8465C5A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74C41BC3-2A48-474B-9735-155A8465C5A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74C41BC3-2A48-474B-9735-155A8465C5A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A86A26FC-84CA-4CFC-A5AF-D38451087C72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A86A26FC-84CA-4CFC-A5AF-D38451087C72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A86A26FC-84CA-4CFC-A5AF-D38451087C72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A86A26FC-84CA-4CFC-A5AF-D38451087C72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

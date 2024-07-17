@@ -43,7 +43,7 @@
                     <td>@item.BlogAuthor</td>
                     <td>@item.BlogContent</td>
                     <td>
-                        <button type="button" class="btn btn-primary" @onclick="() => Edit(item.BlogId)">Edit</button>
+
                         <button type="button" class="btn btn-danger" @onclick="() => Delete(item.BlogId)">Delete</button>
                     </td>
                 </tr>
@@ -103,7 +103,7 @@
 
         //requestModel = result;
         //StateHasChanged();
-        var result = await _db.Blogs.FirstOrDefaultAsync(x => x.BlogId == blogId);
+        var result = await _db.Blogs.AsNoTracking().FirstOrDefaultAsync(x => x.BlogId == blogId);
         if (result is null) return;
 
         requestModel = result;
