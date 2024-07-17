@@ -16,7 +16,15 @@
     <label class="form-label">Blog Content</label>
     <input type="text" class="form-control" @bind-value="requestModel.BlogContent">
 </div>
-<button type="button" class="btn btn-success" @onclick="Save">Save</button>
+
+@if (requestModel.BlogId == 0)
+{
+    <button type="button" class="btn btn-success" @onclick="Save">Save</button>
+}
+else if (requestModel.BlogId > 0)
+{
+    <button type="button" class="btn btn-success" @onclick="Update">Update</button>
+}
 
 @if (Blogs != null && Blogs.Count > 0)
 {
@@ -42,8 +50,8 @@
                     <td>@item.BlogAuthor</td>
                     <td>@item.BlogContent</td>
                     <td>
-                        @*<button type="button" class="btn btn-primary me-2" @onclick="() => Edit(item.BlogId)">Edit</button>
-                            <button type="button" class="btn btn-danger" @onclick="() => Delete(item.BlogId)">Delete</button>*@
+                        <button type="button" class="btn btn-primary me-2" @onclick="() => Edit(item.BlogId)">Edit</button>
+                        @*<button type="button" class="btn btn-danger" @onclick="() => Delete(item.BlogId)">Delete</button>*@
                     </td>
                 </tr>
             }
@@ -77,6 +85,30 @@
         var blogJson = JsonConvert.SerializeObject(requestModel);
         var httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
         var response = await HttpClient.PostAsync(apiEndPoint, httpContent);
+        if (response.IsSuccessStatusCode)
+        {
+            var message = await response.Content.ReadAsStringAsync();
+            await JSRuntime.InvokeVoidAsync("alert", message);
+            requestModel = new();
+            await List();
+        }
+    }
+
+    private async Task Edit(int id)
+    {
+        var response = await HttpClient.GetAsync($"{apiEndPoint}/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            requestModel = JsonConvert.DeserializeObject<BlogModel>(json)!;
+        }
+    }
+
+    private async Task Update()
+    {
+        var blogJson = JsonConvert.SerializeObject(requestModel);
+        var httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
+        var response = await HttpClient.PutAsync($"{apiEndPoint}/{requestModel.BlogId}", httpContent);
         if (response.IsSuccessStatusCode)
         {
             var message = await response.Content.ReadAsStringAsync();

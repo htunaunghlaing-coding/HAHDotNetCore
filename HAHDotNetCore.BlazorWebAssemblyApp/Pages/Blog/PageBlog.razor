@@ -16,11 +16,11 @@
 </div>
 
 <button type="button" class="btn btn-dark me-2" @onclick="Cancel">Cancel</button>
-@if (requestModel.BlogId == null)
+@if (requestModel.BlogId is null)
 {
     <button type="button" class="btn btn-success" @onclick="Save">Save</button>
 }
-else
+else if (requestModel.BlogId is not null)
 {
     <button type="button" class="btn btn-success" @onclick="Update">Update</button>
 }
