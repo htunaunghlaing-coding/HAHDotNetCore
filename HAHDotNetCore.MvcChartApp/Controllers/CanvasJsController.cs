@@ -10,9 +10,16 @@ namespace HAHDotNetCore.MvcChartApp.Controllers;
 
 public class CanvasJsController : Controller
 {
-  
+    private readonly ILogger<CanvasJsController> _logger;
+
+    public CanvasJsController(ILogger<CanvasJsController> logger)
+    {
+        _logger = logger;
+    }
+
     public IActionResult LineChart()
     {
+        _logger.LogInformation("Lince Chart Starting ...");
         return View();
     }
 }

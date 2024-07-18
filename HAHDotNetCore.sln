@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTrainingBatch3.WebApi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.MvcChartApp", "HAHDotNetCore.MvcChartApp\HAHDotNetCore.MvcChartApp.csproj", "{F79D3B56-EB69-41B7-8381-6916A230F83B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.ConsoleAppLogging", "HAHDotNetCore.ConsoleAppLogging\HAHDotNetCore.ConsoleAppLogging.csproj", "{6B8DEEA0-43FE-4013-9832-6FADB1B5AF51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -152,6 +154,10 @@ Global
 		{F79D3B56-EB69-41B7-8381-6916A230F83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F79D3B56-EB69-41B7-8381-6916A230F83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F79D3B56-EB69-41B7-8381-6916A230F83B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B8DEEA0-43FE-4013-9832-6FADB1B5AF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B8DEEA0-43FE-4013-9832-6FADB1B5AF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B8DEEA0-43FE-4013-9832-6FADB1B5AF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B8DEEA0-43FE-4013-9832-6FADB1B5AF51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

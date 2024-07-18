@@ -1,0 +1,15 @@
+2024-07-18 13:17:29.400 +06:30 [INF] Starting web application.
+2024-07-18 13:17:29.977 +06:30 [INF] User profile is available. Using '/Users/htunaunghlaing/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2024-07-18 13:17:30.302 +06:30 [INF] Now listening on: https://localhost:7081
+2024-07-18 13:17:30.328 +06:30 [INF] Now listening on: http://localhost:5106
+2024-07-18 13:17:30.330 +06:30 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-18 13:17:30.331 +06:30 [INF] Hosting environment: Development
+2024-07-18 13:17:30.331 +06:30 [INF] Content root path: /Users/htunaunghlaing/Desktop/VS code/C# Workspace/HAHDotNetCore/HAHDotNetCore.MvcChartApp
+2024-07-18 13:17:31.868 +06:30 [INF] Request starting HTTP/2 GET https://localhost:7081/ - null null
+2024-07-18 13:17:31.877 +06:30 [INF] Executing endpoint 'HAHDotNetCore.MvcChartApp.Controllers.HomeController.Index (HAHDotNetCore.MvcChartApp)'
+2024-07-18 13:17:31.894 +06:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller HAHDotNetCore.MvcChartApp.Controllers.HomeController (HAHDotNetCore.MvcChartApp).
+2024-07-18 13:17:31.899 +06:30 [INF] Executing ViewResult, running view Index.
+2024-07-18 13:17:32.054 +06:30 [INF] Executed ViewResult - view Index executed in 155.0547ms.
+2024-07-18 13:17:32.061 +06:30 [INF] Executed action HAHDotNetCore.MvcChartApp.Controllers.HomeController.Index (HAHDotNetCore.MvcChartApp) in 166.2039ms
+2024-07-18 13:17:32.061 +06:30 [INF] Executed endpoint 'HAHDotNetCore.MvcChartApp.Controllers.HomeController.Index (HAHDotNetCore.MvcChartApp)'
+2024-07-18 13:17:32.063 +06:30 [INF] Request finished HTTP/2 GET https://localhost:7081/ - 200 null text/html; charset=utf-8 195.2332ms
