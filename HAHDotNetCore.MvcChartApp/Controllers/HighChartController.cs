@@ -8,14 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HAHDotNetCore.MvcChartApp.Controllers;
 
-public class ChartJsController : Controller
+public class HighChartController : Controller
 {
-    public IActionResult ChartExample()
-    {
-        return View();
-    }
-
-    public IActionResult InterpolationLineChart()
+    public IActionResult PieChart()
     {
         return View();
     }

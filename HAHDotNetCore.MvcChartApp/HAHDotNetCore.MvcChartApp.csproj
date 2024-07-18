@@ -11,10 +11,12 @@
   <ItemGroup>
     <None Remove="Views\ApexChart\" />
     <None Remove="Views\ChartJs\" />
+    <None Remove="Views\HighChart\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ApexChart\" />
     <Folder Include="Views\ChartJs\" />
+    <Folder Include="Views\HighChart\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
