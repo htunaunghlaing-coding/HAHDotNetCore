@@ -10,9 +10,11 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <None Remove="Views\ApexChart\" />
+    <None Remove="Views\ChartJs\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\ApexChart\" />
+    <Folder Include="Views\ChartJs\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
