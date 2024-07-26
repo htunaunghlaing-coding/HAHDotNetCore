@@ -56,6 +56,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.MvcChartApp",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.ConsoleAppLogging", "HAHDotNetCore.ConsoleAppLogging\HAHDotNetCore.ConsoleAppLogging.csproj", "{6B8DEEA0-43FE-4013-9832-6FADB1B5AF51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.LoginAppWithMiddleware", "HAHDotNetCore.LoginAppWithMiddleware\HAHDotNetCore.LoginAppWithMiddleware.csproj", "{B728B438-85E5-4854-AC0B-4EBF3BE4D3BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAHDotNetCore.HttpClientTesting", "HAHDotNetCore.HttpClientTesting\HAHDotNetCore.HttpClientTesting.csproj", "{F5D051E2-9CD4-4975-8F03-1F3BA999FBF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -158,6 +162,14 @@ Global
 		{6B8DEEA0-43FE-4013-9832-6FADB1B5AF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B8DEEA0-43FE-4013-9832-6FADB1B5AF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B8DEEA0-43FE-4013-9832-6FADB1B5AF51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B728B438-85E5-4854-AC0B-4EBF3BE4D3BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B728B438-85E5-4854-AC0B-4EBF3BE4D3BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B728B438-85E5-4854-AC0B-4EBF3BE4D3BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B728B438-85E5-4854-AC0B-4EBF3BE4D3BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D051E2-9CD4-4975-8F03-1F3BA999FBF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D051E2-9CD4-4975-8F03-1F3BA999FBF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D051E2-9CD4-4975-8F03-1F3BA999FBF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D051E2-9CD4-4975-8F03-1F3BA999FBF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
