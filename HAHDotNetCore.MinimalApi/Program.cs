@@ -2,37 +2,56 @@
 using HAHDotNetCore.MinimalApi.Features.Blog;
 using HAHDotNetCore.MinimalApi.Models;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/minimal.txt", rollingInterval: RollingInterval.Hour)
+    .CreateLogger();
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<AppDbContext>(opt =>
+try
 {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
-},
-ServiceLifetime.Transient,
-ServiceLifetime.Transient);
+    Log.Information("Starting web application");
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Host.UseSerilog();
 
-var app = builder.Build();
+    // Add services to the container.
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+    builder.Services.AddDbContext<AppDbContext>(opt =>
+    {
+        opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
+    },
+    ServiceLifetime.Transient,
+    ServiceLifetime.Transient);
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var app = builder.Build();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+
+    app.MapGet("/", () => "Hello World");
+
+    //BlogService.MapBlog(app);
+    app.MapBlog();
+
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-
-app.MapGet("/", () => "Hello World");
-
-//BlogService.MapBlog(app);
-app.MapBlog();
-
-app.Run();
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
 
 //var summaries = new[]
 //{

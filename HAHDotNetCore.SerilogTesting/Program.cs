@@ -1,12 +1,21 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Serilog;
+using Serilog.Sinks.MSSqlServer;
 
 Console.WriteLine("Hello, World!");
 
-Log.Logger = new LoggerConfiguration()
+ Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
             .WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Hour)
+            .WriteTo
+            .MSSqlServer(
+             connectionString: "Server=localhost;Database=HAHDotNetCore;User Id=SA;Password=Password123;TrustServerCertificate=true",
+             sinkOptions: new MSSqlServerSinkOptions
+             {
+                 TableName = "Tbl_LogEvents",
+                 AutoCreateSqlTable = true
+             })
             .CreateLogger();
 Log.Information("Hello, world!");
 
