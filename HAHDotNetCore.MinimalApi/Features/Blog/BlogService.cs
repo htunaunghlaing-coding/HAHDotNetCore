@@ -56,7 +56,6 @@ public static class BlogService
             var message = result > 0 ? "Delete Data Successfully." : "Delete Data Fail.";
             return Results.Ok(message);
         });
-
         return app;
     }
 }
